@@ -1,0 +1,41 @@
+Package: EHRtemporalVariability
+Type: Package
+Title: EHRtemporalVariability: Delineating Reference Changes in Electronic Health Records over Time
+Version: 1.0
+Date: 2019-03-01
+Encoding: UTF-8
+Description: The EHRtemporalVariability package contains functions to delineate reference changes over time in Electronic Health Records through the projection and visualization of dissimilarities among data temporal batches. This is done through the estimation of data statistical distributions over time and their projection in non-parametric statistical manifolds uncovering the patterns of the data latent temporal variability. Results can be explored through visual analytics formats such as Data Temporal heatmaps and Information Geometric Temporal (IGT) plots. An additional EHRtemporalVariability Shiny app can be used to load and explore the package results and even to allow the use of these functions to those users non-experienced in R coding.
+Depends:
+    R (>= 3.3.0),
+    dplyr
+License: Apache License 2.0 | file LICENSE
+LazyData: true
+Imports:
+    plotly,
+    shiny,
+    zoo,
+    xts,
+    lubridate,
+    RColorBrewer,
+    viridis,
+    scales,
+    devtools,
+    BiocStyle, 
+    methods
+Suggests: knitr, rmarkdown
+VignetteBuilder: knitr
+NeedsCompilation: no
+Authors@R: c(
+  person("Carlos", "Sáez", email = "carsaesi@upv.es", role = c("aut", "cre")),
+  person("Alba", "Gutiérrez-Sacristán", email = "Alba_Gutierrez@hms.harvard.edu", role = c("aut")),
+  person("Paul", "Avillach", email = "Paul_Avillach@hms.harvard.edu", role = c("aut")),
+  person("Juan M", "García-Gómez", email = "juanmig@upv.es", role = c("aut")),
+  person("Biomedical Data Science Lab, Universitat Politècnica de València (Spain)", role = c("cph")),
+  person("Department of Biomedical Informatics, Harvard Medical School", role = c("cph"))
+  )
+Author: Carlos Sáez [aut,cre],
+  Alba Gutiérrez-Sacristán [aut],
+  Paul Avillach [aut],
+  Juan M García-Gómez [aut]
+Maintainer: Carlos Sáez <carsaesi@upv.es>
+RoxygenNote: 6.1.1

@@ -1,0 +1,10 @@
+* using log directory 'D:/OneDrive - UPV/software_investigacion/variabilidad_software/variability/..Rcheck'
+* using R version 3.5.1 (2018-07-02)
+* using platform: x86_64-w64-mingw32 (64-bit)
+* using session charset: ISO8859-1
+* using option '--as-cran'
+* checking for file './DESCRIPTION' ... ERROR
+Required field missing or empty:
+  'Author'
+* DONE
+Status: 1 ERROR
