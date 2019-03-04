@@ -20,9 +20,8 @@ Imports:
     viridis,
     scales,
     devtools,
-    BiocStyle, 
     methods
-Suggests: knitr, rmarkdown
+Suggests: knitr, rmarkdown, BiocStyle
 VignetteBuilder: knitr
 NeedsCompilation: no
 Authors@R: c(
@@ -33,10 +32,6 @@ Authors@R: c(
   person("Biomedical Data Science Lab, Universitat Politècnica de València (Spain)", role = c("cph")),
   person("Department of Biomedical Informatics, Harvard Medical School", role = c("cph"))
   )
-Author: Carlos Sáez [aut,cre],
-  Alba Gutiérrez-Sacristán [aut],
-  Paul Avillach [aut],
-  Juan M García-Gómez [aut]
 Maintainer: Carlos Sáez <carsaesi@upv.es>
 RoxygenNote: 6.1.1
 URL: http://github.com/hms-dbmi/EHRtemporalVariability
