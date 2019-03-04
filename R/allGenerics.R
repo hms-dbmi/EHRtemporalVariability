@@ -68,7 +68,7 @@ setGeneric (name       = "estimateIGTProjection",
 #' @name plotDataTemporalMap
 #' @rdname plotDataTemporalMap-methods
 #' @param dataTemporalMap of class \code{DataTemporalMap}
-#' @param absolute inidicates if the heatmap frequency values are absolute or relative. 
+#' @param absolute indicates if the heatmap frequency values are absolute or relative. 
 #' By default \code{FALSE}.
 #' @param startValue indicates the first value to display in the heatmap.
 #' By default 1.

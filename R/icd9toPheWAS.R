@@ -26,7 +26,7 @@
 #' @param statistics By default \code{FALSE}. Change it to \code{TRUE} to show the 
 #' summary of the mapping like the percentage of initial ICD9-CM codes mapped to PheWAS code. 
 #' @param replaceColumn By default \code{TRUE}. Change it to \code{FALSE} in order to create a
-#' new column with the PheWAS code maintining the ICD9-CM code.  
+#' new column with the PheWAS code maintaining the ICD9-CM code.  
 #' @param verbose By default \code{FALSE}. Change it to \code{TRUE} to get an
 #' on-time log from the function.
 #' @return An object of class \code{data.frame} with the ICD9-CM column transform into
