@@ -22,7 +22,11 @@ The `EHRtemporalVariability` package contains functions to delineate reference c
 
 ## Citation
 
-A paper describing the EHRtemporalVariability package has been submitted. The original methods and case studies using the approach are described here:
+A paper describing the EHRtemporalVariability package has been submitted. If you use EHRtemporalVariability, please cite:
+
+Sáez C, Gutiérrez-Sacristán A, Avillach P, García-Gómez JM. EHRtemporalVariability: delineating unknown reference changes in Electronic Health Records over time. (Submitted)
+
+The original methods and case studies using the approach are described here:
 
 [1]: Sáez C, Rodrigues PP, Gama J, Robles M, García-Gómez JM. Probabilistic change detection and visualization methods for the assessment of temporal stability in biomedical data quality. Data Mining and Knowledge Discovery. 2015;29:950–75. https://doi.org/10.1007/s10618-014-0378-6
 
