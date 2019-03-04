@@ -12,7 +12,7 @@ estimateDataTemporalMap(data = NULL, dateColumnName = NULL,
 }
 \arguments{
 \item{data}{a \code{data.frame} containing as many rows as individuals, and as many columns as the 
-analysis variables plus the individual acqusition date.}
+analysis variables plus the individual acquisition date.}
 
 \item{dateColumnName}{a string indicating the name of the column in \code{data} containing the 
 analysis date variable.}
@@ -35,7 +35,7 @@ variable. If not provided it is automatically estimated from data.}
 for numerical variables when their support is not provided, 100 as default.}
 
 \item{numericSmoothing}{a logical value indicating whether a Kernel Density Estimation smoothing 
-(Gaussian kernel, default bandwith) is to be applied on numerical variables (the default) or a 
+(Gaussian kernel, default bandwidth) is to be applied on numerical variables (the default) or a 
 traditional histogram instead. See ?density for further details.}
 
 \item{dateGapsSmoothing}{a logical value indicating whether a linear smoothing is applied to those 
@@ -49,7 +49,7 @@ A \code{DataTemporalMap} object.
 }
 \description{
 Estimates a \code{DataTemporalMap} from a \code{data.frame} containing individuals in rows and the 
-variables in columns, being one of these columns the analysis date (typically the aquisition date). 
+variables in columns, being one of these columns the analysis date (typically the acquisition date). 
 Will return a \code{DataTemporalMap} object or a \code{list} of \code{DataTemporalMap} objects 
 depending on the number of analysis variables.
 }

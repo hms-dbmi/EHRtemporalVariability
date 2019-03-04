@@ -23,7 +23,7 @@ to the PheWAS code description instead to the PheWAS numeric code.}
 summary of the mapping like the percentage of initial ICD9-CM codes mapped to PheWAS code.}
 
 \item{replaceColumn}{By default \code{TRUE}. Change it to \code{FALSE} in order to create a
-new column with the PheWAS code maintining the ICD9-CM code.}
+new column with the PheWAS code maintaining the ICD9-CM code.}
 
 \item{verbose}{By default \code{FALSE}. Change it to \code{TRUE} to get an
 on-time log from the function.}

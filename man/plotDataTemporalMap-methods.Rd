@@ -22,7 +22,7 @@ plotDataTemporalMap(dataTemporalMap, absolute = FALSE, startValue = 1,
 \arguments{
 \item{dataTemporalMap}{of class \code{DataTemporalMap}}
 
-\item{absolute}{inidicates if the heatmap frequency values are absolute or relative. 
+\item{absolute}{indicates if the heatmap frequency values are absolute or relative. 
 By default \code{FALSE}.}
 
 \item{startValue}{indicates the first value to display in the heatmap.
