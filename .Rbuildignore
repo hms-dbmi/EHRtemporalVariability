@@ -2,8 +2,6 @@
 ^\.Rproj\.user$
 ^\.git$
 ^\.gitignore$
-^\vignettes\biomed-central.csl$
-^\vignettes\createAutomaticPDFfunctions.R$
-^\vignettes\EHRtemporalVariability.Rmd$
-
+^vignettes\biomed-central.csl$
+^vignettes\createAutomaticPDFfunctions.R$
 ^cran-comments\.md$

@@ -1,4 +1,4 @@
-# EHRtemporalVariability
+# EHRtemporalVariability [![](http://www.r-pkg.org/badges/version/EHRtemporalVariability)](https://cran.r-project.org/package=EHRtemporalVariability)
 
 `EHRtemporalVariability` is an R package for delineating reference changes in Eletronic Health Records over time
 
@@ -10,7 +10,7 @@ The `EHRtemporalVariability` package contains functions to delineate reference c
 
  * __Version__: 1.0
  * __Authors__: Carlos Sáez (UPV-HMS), Alba Gutiérrez-Sacristán (HMS), Paul Avillach (HMS), Juan M García-Gómez (UPV)
- * __Maintainer__: Carlos Saez (UPV-HMS)
+ * __Maintainer__: Carlos Sáez (UPV-HMS)
  
  Copyright: 2019 - Biomedical Data Science Lab, Universitat Politècnica de València, Spain (UPV) - Department of Biomedical Informatics, Harvard Medical School (HMS)
 
@@ -36,6 +36,12 @@ The original methods and case studies using the approach are described here:
 
 
 ## Download
+
+Install the latest released version from CRAN
+
+```R
+install.packages("EHRtemporalVariability")
+```
 
 Download the latest development code of EHRtemporalVariability from GitHub using [devtools](https://cran.r-project.org/package=devtools) with
 

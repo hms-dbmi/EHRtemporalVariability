@@ -1,10 +1,10 @@
 Package: EHRtemporalVariability
 Type: Package
-Title: EHRtemporalVariability: Delineating Reference Changes in Electronic Health Records over Time
+Title: Delineating Reference Changes in Electronic Health Records over Time
 Version: 1.0
 Date: 2019-03-01
 Encoding: UTF-8
-Description: The EHRtemporalVariability package contains functions to delineate reference changes over time in Electronic Health Records through the projection and visualization of dissimilarities among data temporal batches. This is done through the estimation of data statistical distributions over time and their projection in non-parametric statistical manifolds uncovering the patterns of the data latent temporal variability. Results can be explored through visual analytics formats such as Data Temporal heatmaps and Information Geometric Temporal (IGT) plots. An additional EHRtemporalVariability Shiny app can be used to load and explore the package results and even to allow the use of these functions to those users non-experienced in R coding.
+Description: The 'EHRtemporalVariability' package contains functions to delineate reference changes over time in Electronic Health Records through the projection and visualization of dissimilarities among data temporal batches. This is done through the estimation of data statistical distributions over time and their projection in non-parametric statistical manifolds uncovering the patterns of the data latent temporal variability. Results can be explored through visual analytics formats such as Data Temporal heatmaps and Information Geometric Temporal (IGT) plots. An additional 'EHRtemporalVariability' Shiny app can be used to load and explore the package results and even to allow the use of these functions to those users non-experienced in R coding.
 Depends:
     R (>= 3.3.0),
     dplyr
