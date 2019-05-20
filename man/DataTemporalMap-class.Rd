@@ -3,6 +3,8 @@
 \docType{class}
 \name{DataTemporalMap-class}
 \alias{DataTemporalMap-class}
+\alias{DataTemporalMap}
+\alias{DataTemporalMap,DataTemporalMap-class}
 \title{Class DataTemporalMap}
 \value{
 A \code{DataTemporalMap} object.
@@ -39,7 +41,6 @@ temporal map (relative frequency).}
 }}
 
 \examples{
-\dontrun{
 
 # Generation through estimateDataTemporalMap function:
 dataset <- read.csv2(system.file("extdata",
@@ -56,7 +57,7 @@ datasetFormatted <- EHRtemporalVariability::formatDate(
                      dateColumn    = "date",
                      dateFormat = "\%y/\%m")
 
-probMaps <- estimateDataTemporalMap(data = datasetPheWAS, 
+probMaps <- estimateDataTemporalMap(data = datasetFormatted, 
                      dateColumnName = "date", 
                      period         = "month")
 
@@ -65,9 +66,10 @@ class( probMaps[[1]] )
 # Manual generation:
 countsMatrix <- matrix(sample.int(25, size = 12*10, replace = TRUE), nrow = 12, ncol = 10)
 probabilityMatrix <- sweep(countsMatrix,1,rowSums(countsMatrix),"/")
-dates <- seq(Sys.Date(),(Sys.Date()+30*12),30)
-x <- DataTemporalMap(probabilityMap = probabilityMatrix, 
-countsMap = countsMatrix, dates = dates, support = as.matrix(1:25), 
-variableName = "example", variableType = "numerical", period = "month")
-}
+dates <- seq(Sys.Date(),(Sys.Date()+30*11),30)
+x <- new('DataTemporalMap', probabilityMap = probabilityMatrix, 
+                     countsMap = countsMatrix, dates = dates, support = data.frame(1:10), 
+                     variableName = "example", variableType = "numeric", period = "month")
+plotDataTemporalMap(x)
+
 }

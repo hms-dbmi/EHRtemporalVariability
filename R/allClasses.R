@@ -51,6 +51,7 @@ checkDataTemporalMap <- function(object) {
 #'
 #' @name DataTemporalMap-class
 #' @rdname DataTemporalMap-class
+#' @aliases DataTemporalMap,DataTemporalMap-class
 #' @slot probabilityMap v-by-d numerical \code{matrix} representing the probability distribution 
 #' temporal map (relative frequency).
 #' @slot countsMap v-by-d numerical \code{matrix} representing the counts temporal map 
@@ -63,7 +64,6 @@ checkDataTemporalMap <- function(object) {
 #' @slot period batching period among "week", "month" and "year".
 #' @return A \code{DataTemporalMap} object.
 #' @examples
-#' \dontrun{
 #' 
 #' # Generation through estimateDataTemporalMap function:
 #' dataset <- read.csv2(system.file("extdata",
@@ -80,7 +80,7 @@ checkDataTemporalMap <- function(object) {
 #'                      dateColumn    = "date",
 #'                      dateFormat = "%y/%m")
 #' 
-#' probMaps <- estimateDataTemporalMap(data = datasetPheWAS, 
+#' probMaps <- estimateDataTemporalMap(data = datasetFormatted, 
 #'                      dateColumnName = "date", 
 #'                      period         = "month")
 #' 
@@ -89,47 +89,46 @@ checkDataTemporalMap <- function(object) {
 #' # Manual generation:
 #' countsMatrix <- matrix(sample.int(25, size = 12*10, replace = TRUE), nrow = 12, ncol = 10)
 #' probabilityMatrix <- sweep(countsMatrix,1,rowSums(countsMatrix),"/")
-#' dates <- seq(Sys.Date(),(Sys.Date()+30*12),30)
-#' x <- DataTemporalMap(probabilityMap = probabilityMatrix, 
-#' countsMap = countsMatrix, dates = dates, support = as.matrix(1:25), 
-#' variableName = "example", variableType = "numerical", period = "month")
-#' }
+#' dates <- seq(Sys.Date(),(Sys.Date()+30*11),30)
+#' x <- new('DataTemporalMap', probabilityMap = probabilityMatrix, 
+#'                      countsMap = countsMatrix, dates = dates, support = data.frame(1:10), 
+#'                      variableName = "example", variableType = "numeric", period = "month")
+#' plotDataTemporalMap(x)
+#' 
 #' @exportClass DataTemporalMap
-setClass( "DataTemporalMap",
-                             slots =
-                                 c( 
-                                     probabilityMap = "matrix",     # d-by-v matrix representing the probability distribution temporal map
-                                     countsMap      = "matrix",     # d-by-v matrix representing the absolute frequencies temporal map
-                                     dates          = "Date",       # d-dimensional date array of the temporal batches
-                                     support        = "data.frame",     # v-by-1 matrix representing the support bins of probabilityMap and countsMap 
-                                     variableName   = "character",  # name of the variable
-                                     variableType   = "character",  # type of the variable (numeric, character, Date, factor)
-                                     period         = "character"   # batching period (week, month, year)
-                                 ),
-                             prototype = 
-                                 list(
-                                     probabilityMap  = NULL,
-                                     countsMap       = NULL,
-                                     dates           = NULL,
-                                     support         = NULL,
-                                     variableName    = NULL,
-                                     variableType    = NULL,
-                                     period          = NULL
-                                 ),
-                             validity = checkDataTemporalMap
+DataTemporalMap <- setClass( "DataTemporalMap",
+         slots =
+             c( 
+                 probabilityMap = "matrix",     # d-by-v matrix representing the probability distribution temporal map
+                 countsMap      = "matrix",     # d-by-v matrix representing the absolute frequencies temporal map
+                 dates          = "Date",       # d-dimensional date array of the temporal batches
+                 support        = "data.frame",     # v-by-1 matrix representing the support bins of probabilityMap and countsMap 
+                 variableName   = "character",  # name of the variable
+                 variableType   = "character",  # type of the variable (numeric, character, Date, factor)
+                 period         = "character"   # batching period (week, month, year)
+             ),
+         prototype = 
+             list(
+                 probabilityMap  = NULL,
+                 countsMap       = NULL,
+                 dates           = NULL,
+                 support         = NULL,
+                 variableName    = NULL,
+                 variableType    = NULL,
+                 period          = NULL
+             ),
+         validity = checkDataTemporalMap
 )
 
-
-
 IGTProjection <- setClass( "IGTProjection",
-                           slots =
-                               c( 
-                                   dataTemporalMap = "DataTemporalMap", # v-by-d matrix representing the data temporal map
-                                   projection      = "matrix"           # d-by-c matrix of the IGT projection for d temporal batches in c dimensions
-                               ),
-                           prototype = 
-                               list(
-                                   dataTemporalMap = NULL,
-                                   projection      = NULL
-                               )
+           slots =
+               c( 
+                   dataTemporalMap = "DataTemporalMap", # v-by-d matrix representing the data temporal map
+                   projection      = "matrix"           # d-by-c matrix of the IGT projection for d temporal batches in c dimensions
+               ),
+           prototype = 
+               list(
+                   dataTemporalMap = NULL,
+                   projection      = NULL
+               )
 )

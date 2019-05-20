@@ -8,8 +8,8 @@ The `EHRtemporalVariability` package contains functions to delineate reference c
 
 ## Package' Status
 
- * __Version__: 1.0
- * __Authors__: Carlos Sáez (UPV-HMS), Alba Gutiérrez-Sacristán (HMS), Paul Avillach (HMS), Juan M García-Gómez (UPV)
+ * __Version__: 1.01
+ * __Authors__: Carlos Sáez (UPV-HMS), Alba Gutiérrez-Sacristán (HMS), Isaac Kohane (HMS), Paul Avillach (HMS), Juan M García-Gómez (UPV)
  * __Maintainer__: Carlos Sáez (UPV-HMS)
  
  Copyright: 2019 - Biomedical Data Science Lab, Universitat Politècnica de València, Spain (UPV) - Department of Biomedical Informatics, Harvard Medical School (HMS)
@@ -24,7 +24,7 @@ The `EHRtemporalVariability` package contains functions to delineate reference c
 
 A paper describing the EHRtemporalVariability package has been submitted. If you use EHRtemporalVariability, please cite:
 
-Sáez C, Gutiérrez-Sacristán A, Avillach P, García-Gómez JM. EHRtemporalVariability: delineating unknown reference changes in Electronic Health Records over time. (Submitted)
+Sáez C, Gutiérrez-Sacristán A, Isaac Kohane, García-Gómez JM, Avillach P. EHRtemporalVariability: delineating unknown reference changes in Electronic Health Records over time. (Submitted)
 
 The original methods and case studies using the approach are described here:
 
