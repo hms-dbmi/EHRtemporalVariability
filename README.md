@@ -18,7 +18,7 @@ The `EHRtemporalVariability` package contains functions to delineate reference c
 
 * Vignette: [EHRtemporalVariability: Delineating reference changes in Eletronic Health Records over time](http://personales.upv.es/carsaesi/EHRtemporalVariability.html)
 
-* [Package help](https://github.com/hms-dbmi/EHRtemporalVariability/raw/master/vignettes/EHRtemporalVariabilityHelpForAllFunctions.pdf)
+* [Package help](https://github.com/hms-dbmi/EHRtemporalVariability/raw/master/vignettes/EHRtemporalVariability.pdf)
 
 ## Citation
 
