@@ -11,12 +11,15 @@ author:
 - name: Alba Gutiérrez-Sacristán
   affiliation: *id2
   email: Alba_Gutierrez@hms.harvard.edu
-- name: Paul Avillach
+- name: Isaac Kohane
   affiliation: *id2
-  email: Paul_Avillach@hms.harvard.edu
+  email: Isaac_Kohane@hms.harvard.edu
 - name: Juan M García-Gómez
   affiliation: *id1
   email: juanmig@upv.es
+- name: Paul Avillach
+  affiliation: *id2
+  email: Paul_Avillach@hms.harvard.edu
 bibliography: general-overview.bib
 csl: biomed-central.csl
 vignette: >

@@ -26,8 +26,9 @@ NeedsCompilation: no
 Authors@R: c(
   person("Carlos", "Sáez", email = "carsaesi@upv.es", role = c("aut", "cre")),
   person("Alba", "Gutiérrez-Sacristán", email = "Alba_Gutierrez@hms.harvard.edu", role = c("aut")),
-  person("Paul", "Avillach", email = "Paul_Avillach@hms.harvard.edu", role = c("aut")),
+  person("Isaac", "Kohane", email = "Isaac_Kohane@hms.harvard.edu", role = c("aut")),
   person("Juan M", "García-Gómez", email = "juanmig@upv.es", role = c("aut")),
+  person("Paul", "Avillach", email = "Paul_Avillach@hms.harvard.edu", role = c("aut")),
   person("Biomedical Data Science Lab, Universitat Politècnica de València (Spain)", role = c("cph")),
   person("Department of Biomedical Informatics, Harvard Medical School", role = c("cph"))
   )

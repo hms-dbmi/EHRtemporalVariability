@@ -9,7 +9,7 @@ The `EHRtemporalVariability` package contains functions to delineate reference c
 ## Package' Status
 
  * __Version__: 1.01
- * __Authors__: Carlos Sáez (UPV-HMS), Alba Gutiérrez-Sacristán (HMS), Isaac Kohane (HMS), Paul Avillach (HMS), Juan M García-Gómez (UPV)
+ * __Authors__: Carlos Sáez (UPV-HMS), Alba Gutiérrez-Sacristán (HMS), Isaac Kohane (HMS), Juan M García-Gómez (UPV), Paul Avillach (HMS)
  * __Maintainer__: Carlos Sáez (UPV-HMS)
  
  Copyright: 2019 - Biomedical Data Science Lab, Universitat Politècnica de València, Spain (UPV) - Department of Biomedical Informatics, Harvard Medical School (HMS)
