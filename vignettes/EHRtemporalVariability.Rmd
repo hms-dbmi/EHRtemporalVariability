@@ -1,7 +1,7 @@
 ---
 title: "EHRtemporalVariability: Delineating reference changes in Eletronic Health Records over time"
 date: "March 1, 2019"
-package: "`r pkg_ver('EHRtemporalVariability')`"
+package: "`r BiocStyle::pkg_ver('EHRtemporalVariability')`"
 author:
 - name: Carlos Sáez
   affiliation: 

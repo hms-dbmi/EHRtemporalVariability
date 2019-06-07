@@ -5,3 +5,4 @@
 ^vignettes\biomed-central.csl$
 ^vignettes\createAutomaticPDFfunctions.R$
 ^cran-comments\.md$
+^CRAN-RELEASE$
