@@ -68,7 +68,11 @@
 #' 
 #' For a larger example download the following .csv dataset and continue the steps as above:
 #' 
-#' inputFile <- "http://github.com/hms-dbmi/EHRtemporalVariability-DataExamples/raw/master/nhdsSubset.csv"
+#' gitHubUrl  <- 'http://github.com/'
+#' gitHubPath <- 'hms-dbmi/EHRtemporalVariability-DataExamples/'
+#' gitHubFile <- 'raw/master/nhdsSubset.csv'
+#' inputFile  <-  paste0(gitHubUrl, gitHubPath, gitHubFile)
+#' 
 #' dataset <- read.csv2( inputFile, 
 #'                      sep  = ",",
 #'                      header = TRUE, 

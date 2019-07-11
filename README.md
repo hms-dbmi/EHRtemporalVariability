@@ -1,10 +1,10 @@
-# EHRtemporalVariability [![](http://www.r-pkg.org/badges/version/EHRtemporalVariability)](https://cran.r-project.org/package=EHRtemporalVariability)
+# EHRtemporalVariability [![](http://www.r-pkg.org/badges/version/EHRtemporalVariability)](https://cran.r-project.org/package=EHRtemporalVariability) [![](http://cranlogs.r-pkg.org/badges/grand-total/EHRtemporalVariability)](http://cranlogs.r-pkg.org/badges/grand-total/EHRtemporalVariability)
 
-`EHRtemporalVariability` is an R package for delineating reference changes in Eletronic Health Records over time
+`EHRtemporalVariability` is an R package for delineating temporal reference changes in Eletronic Health Records
 
 ## What is this repository for?
 
-The `EHRtemporalVariability` package contains functions to delineate reference changes over time in Electronic Health Records through the projection and visualization of dissimilarities among data temporal batches. This is done through the estimation of data statistical distributions over time and their projection in non-parametric statistical manifolds uncovering the patterns of the data latent temporal variability. Results can be explored through visual analytics formats such as Data Temporal heatmaps and Information Geometric Temporal (IGT) plots [1-3](https://github.com/hms-dbmi/EHRtemporalVariability#Citation). An additional [EHRtemporalVariability Shiny app](https://github.com/hms-dbmi/EHRtemporalVariability-shiny) can be used to load and explore the package results and even to allow the use of these functions to those users non-experienced in R coding.
+The `EHRtemporalVariability` package contains functions to delineate temporal reference changes in Electronic Health Records through the projection and visualization of dissimilarities among data temporal batches. This is done through the estimation of data statistical distributions over time and their projection in non-parametric statistical manifolds uncovering the patterns of the data latent temporal variability. Results can be explored through visual analytics formats such as Data Temporal heatmaps and Information Geometric Temporal (IGT) plots [1-3](https://github.com/hms-dbmi/EHRtemporalVariability#Citation). An additional [EHRtemporalVariability Shiny app](https://github.com/hms-dbmi/EHRtemporalVariability-shiny) can be used to load and explore the package results and even to allow the use of these functions to those users non-experienced in R coding.
 
 ## Package' Status
 
@@ -24,7 +24,7 @@ The `EHRtemporalVariability` package contains functions to delineate reference c
 
 A paper describing the EHRtemporalVariability package has been submitted. If you use EHRtemporalVariability, please cite:
 
-Sáez C, Gutiérrez-Sacristán A, Isaac Kohane, García-Gómez JM, Avillach P. EHRtemporalVariability: delineating unknown reference changes in Electronic Health Records over time. (Submitted)
+Sáez C, Gutiérrez-Sacristán A, Isaac Kohane, García-Gómez JM, Avillach P. EHRtemporalVariability: delineating unknown, temporal reference changes in Electronic Health Records. (Submitted)
 
 The original methods and case studies using the approach are described here:
 

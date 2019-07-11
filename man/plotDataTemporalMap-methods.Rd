@@ -68,8 +68,12 @@ p
 
 # For additional and larger examples download the following .Rdata file:
 
-githubURL <- "https://github.com/hms-dbmi/EHRtemporalVariability-DataExamples/raw/master/variabilityDemoNHDS.RData"
-load(url(githubURL))
+gitHubUrl  <- 'http://github.com/'
+gitHubPath <- 'hms-dbmi/EHRtemporalVariability-DataExamples/'
+gitHubFile <- 'raw/master/variabilityDemoNHDS.RData'
+inputFile  <-  paste0(gitHubUrl, gitHubPath, gitHubFile)
+
+load(url(inputFile))
 plotDataTemporalMap(probMaps$`diagcode1-phewascode`, startValue = 2, endValue = 40)
 }
 }
