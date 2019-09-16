@@ -1,6 +1,6 @@
 ---
-title: "EHRtemporalVariability: Delineating reference changes in Eletronic Health Records over time"
-date: "June 7, 2019"
+title: "EHRtemporalVariability: Delineating temporal dataset shifts in Eletronic Health Records"
+date: "September 15, 2019"
 package: "EHRtemporalVariability `r packageVersion('EHRtemporalVariability')`"
 author:
 - name: Carlos Sáez
@@ -36,10 +36,10 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 # Introduction
-The `EHRtemporalVariability` package contains functions to delineate reference changes over time in Electronic Health Records through the projection and visualization of dissimilarities among data temporal batches. This is done through the estimation of data statistical distributions over time and their projection in non-parametric statistical manifolds uncovering the patterns of the data latent temporal variability. Results can be explored through visual analytics formats such as Data Temporal heatmaps and Information Geometric Temporal (IGT) plots [@saez_probabilistic_2015,@saez2016applying]. An additional [EHRtemporalVariability Shiny app](https://github.com/hms-dbmi/variability-shiny) can be used to load and explore the package results towards an improved investigation experience and even to allow the use of these functions to those users non-experienced in R coding.
+The `EHRtemporalVariability` package contains functions to delineate temporal dataset shifts in Electronic Health Records through the projection and visualization of dissimilarities among data temporal batches. This is done through the estimation of data statistical distributions over time and their projection in non-parametric statistical manifolds, uncovering the patterns of the data latent temporal variability. Dataset shifts can be explored and identified through visual analytics formats such as Data Temporal heatmaps and Information Geometric Temporal (IGT) plots [@saez_probabilistic_2015; @saez2016applying; @saez2018kinematics]. An additional [EHRtemporalVariability Shiny app](https://github.com/hms-dbmi/variability-shiny) can be used to load and explore the package results towards an improved investigation experience and even to allow the use of these functions to those users non-experienced in R coding.
 
 ## Background
-Biomedical Data research repositories and property biomedical research databases are becoming bigger both in terms of sample size and collected variables [@Gewin2016,@Andreu-Perez2015]. Two significant reasons behind of this are the widespread adoption of data-sharing initiatives and technological infrastructures, and the continuous and systematic population of those repositories over longer periods of time. However, these two situations can also introduce potential confounding factors in data which may hinder their reuse for research, such as in population research or in statistical and machine learning modelling. Concretely, differences in protocols, populations, or even unexpected biases, either caused by systems or humans, can lead to changes of reference in data over time. This data temporal variability will be reflected on its statistical distributions, related to the above mentioned confounding factors which, in the end, represent a Data Quality (DQ) issue which must be addressed for a reliable data reuse [@saez2016applying,@schlegel2017secondary].
+Biomedical Data research repositories and property biomedical research databases are becoming bigger both in terms of sample size and collected variables [@Gewin2016; @Andreu-Perez2015]. Two significant reasons behind of this are the widespread adoption of data-sharing initiatives and technological infrastructures, and the continuous and systematic population of those repositories over longer periods of time. However, these two situations can also introduce potential confounding factors in data which may hinder their reuse for research, such as in population research or in statistical and machine learning modeling. Concretely, differences in protocols, populations, or even unexpected biases, either caused by systems or humans, can lead to temporal dataset shifts [@quionero2009dataset; @moreno2012unifying], changes of reference which are reflected in the statistical distributions of data. This temporal variability of data represent a Data Quality (DQ) issue which must be addressed for a reliable data reuse [@saez2016applying; @schlegel2017secondary].
 
 The `EHRtemporalVariability` package has been developed to help preventing this problem.
 
@@ -134,7 +134,6 @@ dataset <- read.csv2( "http://github.com/hms-dbmi/EHRtemporalVariability-DataExa
                                       "numeric" , rep( "factor", 22 ) ) )
 head( dataset)
 ```
-
 
 ## Transform the date column in 'Date' R format
 The second step will be transform the date column in 'Date' R format. The `EHRtemporalVariability` R package allows the user to do this transformation applying the `formatDate` function.
