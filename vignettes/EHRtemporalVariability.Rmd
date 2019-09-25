@@ -1,5 +1,5 @@
 ---
-title: "EHRtemporalVariability: Delineating temporal dataset shifts in Eletronic Health Records"
+title: "EHRtemporalVariability: Delineating temporal dataset shifts in Electronic Health Records"
 date: "September 15, 2019"
 package: "EHRtemporalVariability `r packageVersion('EHRtemporalVariability')`"
 author:
