@@ -16,7 +16,7 @@ The `EHRtemporalVariability` package contains functions to delineate temporal da
 
 ## Documentation
 
-* Vignette: [EHRtemporalVariability: Delineating temporal dataset shifts in eletronic health records](http://personales.upv.es/carsaesi/EHRtemporalVariability.html)
+* Vignette: [EHRtemporalVariability: Delineating temporal dataset shifts in electronic health records](http://personales.upv.es/carsaesi/EHRtemporalVariability.html)
 
 * [Package help](https://github.com/hms-dbmi/EHRtemporalVariability/raw/master/vignettes/EHRtemporalVariabilityHelp.pdf)
 
