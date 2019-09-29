@@ -101,7 +101,7 @@ class( probMaps$`diagcode1-phewascode` )
 `DataTemporalMap` object is the output of `estimateDataTemporalMap` function. It is used as input for `plotDataTemporalMap` functions.
 
 <br>
-<span style="background-color:LemonChiffon">Note that objects of this class can be generated automatically by the `estimateDataTemporalMap` function, but its construction and extension is open towards fostering its use through external methods. E.g., one may ise additional probability distribution estimation methods, or even contruct compatible `DataTemporalMap` object for other unstructured data shuch as images or free text.</span>
+<span style="background-color:LemonChiffon">Note that objects of this class can be generated automatically by the `estimateDataTemporalMap` function, but its construction and extension is open towards fostering its use through external methods. E.g., one may use additional probability distribution estimation methods, or even contruct compatible `DataTemporalMap` object for other unstructured data shuch as images or free text.</span>
 
 ### `IGTProjection`
 

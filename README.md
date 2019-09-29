@@ -24,7 +24,7 @@ The `EHRtemporalVariability` package contains functions to delineate temporal da
 
 A paper describing the EHRtemporalVariability package has been submitted. If you use EHRtemporalVariability, please cite:
 
-Sáez C, Gutiérrez-Sacristán A, Isaac Kohane, García-Gómez JM, Avillach P. EHRtemporalVariability: delineating temporal dataset shifts in electronic health records. (Submitted)
+Sáez C, Gutiérrez-Sacristán A, Kohane I, García-Gómez JM, Avillach P. EHRtemporalVariability: delineating temporal dataset shifts in electronic health records. (Submitted)
 
 The original methods and case studies using the approach are described here:
 

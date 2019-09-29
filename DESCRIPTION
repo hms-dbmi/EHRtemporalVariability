@@ -1,8 +1,8 @@
 Package: EHRtemporalVariability
 Type: Package
-Title: Delineating temporal dataset shifts in Electronic Health Records
+Title: Delineating Temporal Dataset Shifts in Electronic Health Records
 Version: 1.0.2
-Date: 2019-05-17
+Date: 2019-09-26
 Encoding: UTF-8
 Description: The 'EHRtemporalVariability' package contains functions to delineate temporal dataset shifts in Electronic Health Records through the projection and visualization of dissimilarities among data temporal batches. This is done through the estimation of data statistical distributions over time and their projection in non-parametric statistical manifolds uncovering the patterns of the data latent temporal variability. Dataset shifts can be explored and identified through visual analytics formats such as Data Temporal heatmaps and Information Geometric Temporal (IGT) plots. An additional 'EHRtemporalVariability' Shiny app can be used to load and explore the package results and even to allow the use of these functions to those users non-experienced in R coding.
 Depends:
