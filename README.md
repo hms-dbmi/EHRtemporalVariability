@@ -8,7 +8,7 @@ The `EHRtemporalVariability` package contains functions to delineate temporal da
 
 ## Package' Status
 
- * __Version__: 1.0.2
+ * __Version__: 1.0.3
  * __Authors__: Carlos Sáez (UPV-HMS), Alba Gutiérrez-Sacristán (HMS), Isaac Kohane (HMS), Juan M García-Gómez (UPV), Paul Avillach (HMS)
  * __Maintainer__: Carlos Sáez (UPV-HMS)
  

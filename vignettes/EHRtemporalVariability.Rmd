@@ -1,6 +1,6 @@
 ---
 title: "EHRtemporalVariability: Delineating temporal dataset shifts in Electronic Health Records"
-date: "September 15, 2019"
+date: "March 25, 2020"
 package: "EHRtemporalVariability `r packageVersion('EHRtemporalVariability')`"
 author:
 - name: Carlos Sáez
@@ -79,7 +79,7 @@ library(devtools)
 Once `devtools` package has been installed the user can install `EHRtemporalVariability` typing the following commands in an R session:
 
 ```{r bioC, message=FALSE, eval=FALSE, warning=FALSE}
-install_github( "hms-dbmi/EHRtemporalVariability" )
+install_github("hms-dbmi/EHRtemporalVariability")
 library( EHRtemporalVariability )
 ```
 

@@ -127,8 +127,8 @@ setMethod(f = "plotDataTemporalMap",
               
               p <- plotly::plot_ly(x=dates, y=support[startValue:endValue,1], z = t(as.data.frame(temporalMap[,startValue:endValue])),
                                    type = "heatmap", colorscale = colorScale, reversescale = TRUE) %>%
-                  plotly::config(staticPlot = FALSE, displayModeBar = TRUE, workspace = TRUE, editable = FALSE,
-                                 sendData = FALSE, displaylogo = FALSE, collaborate = FALSE, 
+                  plotly::config(staticPlot = FALSE, displayModeBar = TRUE, editable = FALSE,
+                                 sendData = FALSE, displaylogo = FALSE, 
                                  modeBarButtonsToRemove = list("sendDataToCloud","hoverCompareCartesian"))%>%
                   plotly::layout(xaxis = x, yaxis = y, title = ifelse(absolute, "Absolute frequencies data temporal heatmap", "Probability distribution data temporal heatmap" )) %>%
                   plotly::layout(margin = m)
@@ -188,8 +188,8 @@ setMethod(f="plotIGTProjection",
               if (dimensions == 2) {
                   
                   p <- plotly::plot_ly() %>%
-                      plotly::config(staticPlot = FALSE, displayModeBar = TRUE, workspace = TRUE, editable = FALSE,
-                                     sendData = FALSE, displaylogo = FALSE, collaborate = FALSE, 
+                      plotly::config(staticPlot = FALSE, displayModeBar = TRUE, editable = FALSE,
+                                     sendData = FALSE, displaylogo = FALSE,
                                      modeBarButtonsToRemove = list("sendDataToCloud","hoverCompareCartesian")) %>%
                       plotly::layout(showlegend = FALSE,
                                      xaxis = list(title = 'D1', scaleanchor = "x"),
@@ -225,7 +225,7 @@ setMethod(f="plotIGTProjection",
                           p <- plotly::add_text(p, x = projection[i,1], y = projection[i,2],
                                                 hoverinfo = 'text',
                                                 # hovertext = paste('Year: ',format(dates[i],"%Y"),'\nMonth: ',monthsLong[cidx[i]],'\nWeek: ',cidxw[i]),
-                                                hovertext = paste(format(dates[i],"%Y"),'-',monthsLong[cidx[i]],'-w',cidxw[i]),
+                                                hovertext = paste(format(dates[i],"%Y"),'-',monthsLong[cidxm[i]],'-w',cidxw[i]),
                                                 text = paste(format(dates[i],"%y"),months[cidxm[i]],cidxw[i],sep=''),
                                                 textfont = list(size = 14, color = periodcolor[cidxw[i]]), textposition = "middle center")
                       }
@@ -236,8 +236,8 @@ setMethod(f="plotIGTProjection",
               } else if (dimensions == 3) {
                   
                   p <- plotly::plot_ly() %>%
-                      plotly::config(staticPlot = FALSE, displayModeBar = TRUE, workspace = TRUE, editable = FALSE,
-                                     sendData = FALSE, displaylogo = FALSE, collaborate = FALSE,
+                      plotly::config(staticPlot = FALSE, displayModeBar = TRUE, editable = FALSE,
+                                     sendData = FALSE, displaylogo = FALSE,
                                      modeBarButtonsToRemove = list("sendDataToCloud","hoverCompareCartesian")) %>%
                       plotly::layout(showlegend = FALSE, scene = list(xaxis = list(title = 'D1', scaleanchor = "x"),
                                                                       yaxis = list(title = 'D2', scaleanchor = "x"),
@@ -279,7 +279,7 @@ setMethod(f="plotIGTProjection",
                           p <- plotly::add_text(p, x = projection[i,1], y = projection[i,2], z = projection[i,3],
                                                 hoverinfo = 'text',
                                                 # hovertext = paste('Year: ',format(dates[i],"%Y"),'\nMonth: ',monthsLong[cidx[i]],'\nWeek: ',cidxw[i]),
-                                                hovertext = paste(format(dates[i],"%Y"),'-',monthsLong[cidx[i]],'-w',cidxw[i]),
+                                                hovertext = paste(format(dates[i],"%Y"),'-',monthsLong[cidxm[i]],'-w',cidxw[i]),
                                                 text = paste(format(dates[i],"%y"),months[cidxm[i]],cidxw[i],sep=''),
                                                 textfont = list(size = 14, color = periodcolor[cidxw[i]]), textposition = "middle center")
                       }
