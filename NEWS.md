@@ -1,6 +1,10 @@
+# EHRtemporalVariability 1.0.4
+
+* Fixed bug in the estimateDataTemporalMap function where an expected Date was POSIXt instead when using newer versions of zoo and R package.
+
 # EHRtemporalVariability 1.0.3
 
-* Fixed a bug when plotting IGT projections at a weekly period.
+* Fixed bug when plotting IGT projections at a weekly period.
 * Removed no longer used plotly buttons to supress warnings.
 
 # EHRtemporalVariability 1.0.2

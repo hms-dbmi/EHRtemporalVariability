@@ -4,9 +4,15 @@
 \alias{icd9toPheWAS}
 \title{Function to transform ICD9-CM codification into PheWAS code}
 \usage{
-icd9toPheWAS(data, icd9ColumnName, missingValues = "NA",
-  phecodeDescription = FALSE, statistics = FALSE,
-  replaceColumn = TRUE, verbose = FALSE)
+icd9toPheWAS(
+  data,
+  icd9ColumnName,
+  missingValues = "NA",
+  phecodeDescription = FALSE,
+  statistics = FALSE,
+  replaceColumn = TRUE,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{data}{A \code{data.frame} object with at least one column of ICD9-CM codes that

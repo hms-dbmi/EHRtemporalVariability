@@ -4,8 +4,7 @@
 \alias{formatDate}
 \title{Function to transform dates into "Date" R format}
 \usage{
-formatDate(input, dateColumn, dateFormat = "\%y/\%m/\%d",
-  verbose = FALSE)
+formatDate(input, dateColumn, dateFormat = "\%y/\%m/\%d", verbose = FALSE)
 }
 \arguments{
 \item{input}{A \code{data.frame} object with at least one column of dates.}

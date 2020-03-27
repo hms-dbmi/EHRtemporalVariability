@@ -4,11 +4,18 @@
 \alias{estimateDataTemporalMap}
 \title{Estimates \code{DataTemporalMap} objects from raw data}
 \usage{
-estimateDataTemporalMap(data = NULL, dateColumnName = NULL,
-  period = "month", startDate = NULL, endDate = NULL,
-  supports = NULL, numericVariablesBins = 100,
-  numericSmoothing = TRUE, dateGapsSmoothing = FALSE,
-  verbose = FALSE)
+estimateDataTemporalMap(
+  data = NULL,
+  dateColumnName = NULL,
+  period = "month",
+  startDate = NULL,
+  endDate = NULL,
+  supports = NULL,
+  numericVariablesBins = 100,
+  numericSmoothing = TRUE,
+  dateGapsSmoothing = FALSE,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{data}{a \code{data.frame} containing as many rows as individuals, and as many columns as the 

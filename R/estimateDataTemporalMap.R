@@ -279,7 +279,7 @@ estimateDataTemporalMap <- function(data = NULL, dateColumnName = NULL, period =
                     message(sprintf("-'%s': %d %s date gaps filed by NAs",colnames(data)[i],nGaps,period))
             }
             
-            datesMap <- zoo::index(map)
+            datesMap <- as.Date(zoo::index(map))
         } else {
             if(verbose && dateGapsSmoothing)
                 message(sprintf("-'%s': no date gaps, date gap smoothing was not applied",colnames(data)[i]))
