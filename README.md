@@ -8,7 +8,7 @@ The `EHRtemporalVariability` package contains functions to delineate temporal da
 
 ## Package' Status
 
- * __Version__: 1.0.3
+ * __Version__: 1.0.4
  * __Authors__: Carlos Sáez (UPV-HMS), Alba Gutiérrez-Sacristán (HMS), Isaac Kohane (HMS), Juan M García-Gómez (UPV), Paul Avillach (HMS)
  * __Maintainer__: Carlos Sáez (UPV-HMS)
  
@@ -16,7 +16,7 @@ The `EHRtemporalVariability` package contains functions to delineate temporal da
 
 ## Documentation
 
-* Vignette: [EHRtemporalVariability: Delineating temporal dataset shifts in electronic health records](http://personales.upv.es/carsaesi/EHRtemporalVariability.html)
+* Vignette: [EHRtemporalVariability: Delineating temporal dataset shifts in electronic health records](http://personales.upv.es/carsaesi/EHRtemporalVariability/EHRtemporalVariability.html)
 
 * [Package help](https://github.com/hms-dbmi/EHRtemporalVariability/raw/master/vignettes/EHRtemporalVariabilityHelp.pdf)
 
