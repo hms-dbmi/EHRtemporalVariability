@@ -10,7 +10,8 @@ plotIGTProjection(
   dimensions = 3,
   startDate = min(igtProjection@dataTemporalMap@dates),
   endDate = max(igtProjection@dataTemporalMap@dates),
-  colorPalette = "Spectral"
+  colorPalette = "Spectral",
+  trajectory = FALSE
 )
 
 \S4method{plotIGTProjection}{IGTProjection}(
@@ -18,7 +19,8 @@ plotIGTProjection(
   dimensions = 3,
   startDate = min(igtProjection@dataTemporalMap@dates),
   endDate = max(igtProjection@dataTemporalMap@dates),
-  colorPalette = "Spectral"
+  colorPalette = "Spectral",
+  trajectory = FALSE
 )
 }
 \arguments{
@@ -37,6 +39,9 @@ scheme from blue, through yellow, to red (see "Spectral" palette in RColorBrewer
 The four remaining options are better suited for those with colorblindness, including "Viridis", 
 "Magma", and their reversed versions "Viridis-reversed" and "Magma-reversed" (see "Viridis" and 
 "Magma" palettes in the Viridis package).}
+
+\item{trajectory}{whether to show an estimated trajectory of the information evolution over time. 
+By default \code{FALSE}.}
 }
 \value{
 A plot object based on the \code{plotly} package.
@@ -53,11 +58,12 @@ If period=="year" the label is "yy" (2 digit year) and the color is according to
 If period=="month" the label is "yym" (yy + abbreviated month*) and the color is according 
 to the season (yearly).
 If period=="week" the label is "yymmw" (yym + ISO week number in 1-2 digit) and the color is 
-according to the season (yearly).
+according to the season (yearly). An estimated smoothed trajectory of the information evolution
+over time can be shown using the optional "trajectory" parameter.
 *Month abbreviations: \{'J', 'F', 'M', 'A', 'm', 'j', 'x', 'a', 'S', 'O', 'N', 'D'\}.
 }
 \details{
-Note that since the projection is based on Classical Multi Dimensional Scaling, a 2 dimensional 
+Note that since the projection is based on Multi Dimensional Scaling, a 2 dimensional 
 projection entails a loss of information compared to a 3 dimensional projection. E.g., periodic 
 variability components such as seasonal effect can be hindered by an abrupt change or a general trend.
 }

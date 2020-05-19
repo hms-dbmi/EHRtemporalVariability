@@ -29,8 +29,15 @@
 #' @param endDate a Date object indicating the date at which to end the analysis, 
 #' in case of being different from the last chronological date in the date column 
 #' (the default).
+#' @param embeddingType the type of embedding to apply to the dissimilarity matrix of time batches
+#' in order to obtain the non-parametric Statistical Manifold, from "classicalmds" and "nonmetricmds", 
+#' with "classicalmds" as default. "classicalmds" uses the base R stats::cmdscale function, while "nonmetricmds"
+#' uses the MASS:isoMDS function. The returned stress format will depend on the selected embedding type:
+#' "classicalmds" returns 1-GOF as returned by stats::cmdscale function, "nonmetricmds" returns the final stress
+#' in percent, as returned by the MASS::isoMDS function
 #' @return An \code{IGTProjection} object containing the projected coordinates of each
-#' temporal batch in the embedded non-parametric Statistical Manifold
+#' temporal batch in the embedded non-parametric Statistical Manifold, as well as the
+#' embedding stress according to the embeddingType.
 #' @examples
 #' load(system.file("extdata",
 #'                  "variabilityDemoNHDSdiagcode1-phewascode.RData",
@@ -58,7 +65,7 @@
 #' @exportMethod estimateIGTProjection
 setGeneric (name       = "estimateIGTProjection",
             valueClass = "IGTProjection",
-            def        = function(dataTemporalMap, dimensions = 3, startDate = NULL, endDate = NULL)
+            def        = function(dataTemporalMap, dimensions = 3, startDate = NULL, endDate = NULL, embeddingType = "classicalmds")
             {
                 standardGeneric("estimateIGTProjection")
             }
@@ -137,10 +144,11 @@ setGeneric (name       = "plotDataTemporalMap",
 #' If period=="month" the label is "yym" (yy + abbreviated month*) and the color is according 
 #' to the season (yearly).
 #' If period=="week" the label is "yymmw" (yym + ISO week number in 1-2 digit) and the color is 
-#' according to the season (yearly).
+#' according to the season (yearly). An estimated smoothed trajectory of the information evolution
+#' over time can be shown using the optional "trajectory" parameter.
 #' *Month abbreviations: \{'J', 'F', 'M', 'A', 'm', 'j', 'x', 'a', 'S', 'O', 'N', 'D'\}.
 #'
-#' Note that since the projection is based on Classical Multi Dimensional Scaling, a 2 dimensional 
+#' Note that since the projection is based on Multi Dimensional Scaling, a 2 dimensional 
 #' projection entails a loss of information compared to a 3 dimensional projection. E.g., periodic 
 #' variability components such as seasonal effect can be hindered by an abrupt change or a general trend.
 #'
@@ -157,6 +165,8 @@ setGeneric (name       = "plotDataTemporalMap",
 #' The four remaining options are better suited for those with colorblindness, including "Viridis", 
 #' "Magma", and their reversed versions "Viridis-reversed" and "Magma-reversed" (see "Viridis" and 
 #' "Magma" palettes in the Viridis package).
+#' @param trajectory whether to show an estimated trajectory of the information evolution over time. 
+#' By default \code{FALSE}.
 #' @return A plot object based on the \code{plotly} package.
 #' @examples
 #' load(system.file("extdata",
@@ -184,7 +194,7 @@ setGeneric (name       = "plotDataTemporalMap",
 #' @importFrom methods .valueClassTest new
 setGeneric (name       = "plotIGTProjection",
             valueClass = c("plotly","htmlwidget"),
-            def        = function(igtProjection, dimensions = 3, startDate = min(igtProjection@dataTemporalMap@dates), endDate = max(igtProjection@dataTemporalMap@dates), colorPalette = "Spectral")
+            def        = function(igtProjection, dimensions = 3, startDate = min(igtProjection@dataTemporalMap@dates), endDate = max(igtProjection@dataTemporalMap@dates), colorPalette = "Spectral", trajectory = FALSE)
             {
                 standardGeneric("plotIGTProjection")
             }

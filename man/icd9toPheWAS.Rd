@@ -55,6 +55,7 @@ dataset <- read.csv2(system.file("extdata",
 datasetPheWAS <- icd9toPheWAS( data           = dataset,
                               icd9ColumnName  = "diagcode1", 
                               missingValues   = "N/A", 
+                              replaceColumn   = TRUE, 
                               statistics      = TRUE 
                               )
 }

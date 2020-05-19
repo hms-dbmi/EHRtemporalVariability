@@ -102,7 +102,7 @@ DataTemporalMap <- setClass( "DataTemporalMap",
                  probabilityMap = "matrix",     # d-by-v matrix representing the probability distribution temporal map
                  countsMap      = "matrix",     # d-by-v matrix representing the absolute frequencies temporal map
                  dates          = "Date",       # d-dimensional date array of the temporal batches
-                 support        = "data.frame",     # v-by-1 matrix representing the support bins of probabilityMap and countsMap 
+                 support        = "data.frame", # v-by-1 matrix representing the support bins of probabilityMap and countsMap 
                  variableName   = "character",  # name of the variable
                  variableType   = "character",  # type of the variable (numeric, character, Date, factor)
                  period         = "character"   # batching period (week, month, year)
@@ -124,11 +124,15 @@ IGTProjection <- setClass( "IGTProjection",
            slots =
                c( 
                    dataTemporalMap = "DataTemporalMap", # v-by-d matrix representing the data temporal map
-                   projection      = "matrix"           # d-by-c matrix of the IGT projection for d temporal batches in c dimensions
+                   projection      = "matrix",          # d-by-c matrix of the IGT projection for d temporal batches in c dimensions
+                   embeddingType   = "character",       # embedding function used for the IGT projection calculation, classical multidimensional scaling by default
+                   stress          = "numeric"           # stress achieved in the lower-dimensional embedding, depending on the embedding type (e.g., classicalmds will return 1-GOF as returned by stats::cmdscale function, and nonmetricmds will return final stress in percent, as returned by the MASS::isoMDS function)
                ),
            prototype = 
                list(
                    dataTemporalMap = NULL,
-                   projection      = NULL
+                   projection      = NULL,
+                   embeddingType   = NULL,
+                   stress          = NULL
                )
 )

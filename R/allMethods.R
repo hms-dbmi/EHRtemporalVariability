@@ -16,7 +16,7 @@
 #' @aliases estimateIGTProjection,IGTProjection-method
 setMethod(f="estimateIGTProjection",
           signature  = c("DataTemporalMap"),
-          definition = function(dataTemporalMap, dimensions, startDate, endDate)
+          definition = function(dataTemporalMap, dimensions, startDate, endDate, embeddingType)
           {
               if(is.null(dataTemporalMap))
                   stop("dataTemporalMap of class DataTemporalMap must be provided")
@@ -37,7 +37,10 @@ setMethod(f="estimateIGTProjection",
                       dataTemporalMap = trimDataTemporalMap(dataTemporalMap, endDate = endDate)
               }
               
-              value <- igtProjectionCore(dataTemporalMap = dataTemporalMap, dimensions = dimensions)
+              if (!embeddingType %in% c("classicalmds", "nonmetricmds"))
+                  stop("embeddingType must be one of classicalmds or nonmetricmds")
+              
+              value <- igtProjectionCore(dataTemporalMap = dataTemporalMap, dimensions = dimensions, embeddingType = embeddingType)
               return(value)
           }
 )
@@ -140,7 +143,7 @@ setMethod(f = "plotDataTemporalMap",
 #' @rdname plotIGTProjection-methods
 setMethod(f="plotIGTProjection",
           signature  = "IGTProjection",
-          definition = function(igtProjection, dimensions, startDate, endDate, colorPalette){
+          definition = function(igtProjection, dimensions, startDate, endDate, colorPalette, trajectory){
               
               if (dimensions < 2 || dimensions > 3)
                   stop("currently IGT plot can only be made on 2 or 3 dimensions, please set dimensions parameter accordingly")
@@ -231,6 +234,13 @@ setMethod(f="plotIGTProjection",
                       }
                   }
                   
+                  if( trajectory ){
+                      igtTrajectory = estimateIGTTrajectory(igtProjection)
+                      p <- plotly::add_trace(p, x = igtTrajectory$points$D1, y = igtTrajectory$points$D2,
+                                             type = 'scatter', mode = 'lines', line = list(color = "#21908C", width = 1),
+                                             hovertext = sprintf("Approx. date: %s",rownames(igtTrajectory$points))) %>% plotly::hide_colorbar()
+                  }
+                  
                   return(p)
                   
               } else if (dimensions == 3) {
@@ -283,6 +293,12 @@ setMethod(f="plotIGTProjection",
                                                 text = paste(format(dates[i],"%y"),months[cidxm[i]],cidxw[i],sep=''),
                                                 textfont = list(size = 14, color = periodcolor[cidxw[i]]), textposition = "middle center")
                       }
+                  }
+                  
+                  if( trajectory ){
+                      igtTrajectory = estimateIGTTrajectory(igtProjection)
+                      p <- plotly::add_paths(p, x = igtTrajectory$points$D1, y = igtTrajectory$points$D2, z = igtTrajectory$points$D3,
+                                             color = 1:nrow(igtTrajectory$points), hovertext = sprintf("Approx. date: %s",rownames(igtTrajectory$points))) %>% plotly::hide_colorbar()
                   }
                   
                   return(p)

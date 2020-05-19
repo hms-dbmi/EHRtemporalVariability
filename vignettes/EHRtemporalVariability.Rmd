@@ -1,6 +1,6 @@
 ---
 title: "EHRtemporalVariability: Delineating temporal dataset shifts in Electronic Health Records"
-date: "March 27, 2020"
+date: "May 19, 2020"
 package: "EHRtemporalVariability `r packageVersion('EHRtemporalVariability')`"
 author:
 - name: Carlos Sáez
@@ -32,11 +32,11 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE)
 ```
 
 # Introduction
-The `EHRtemporalVariability` package contains functions to delineate temporal dataset shifts in Electronic Health Records through the projection and visualization of dissimilarities among data temporal batches. This is done through the estimation of data statistical distributions over time and their projection in non-parametric statistical manifolds, uncovering the patterns of the data latent temporal variability. Dataset shifts can be explored and identified through visual analytics formats such as Data Temporal heatmaps and Information Geometric Temporal (IGT) plots [@saez_probabilistic_2015; @saez2016applying; @saez2018kinematics]. An additional [EHRtemporalVariability Shiny app](https://github.com/hms-dbmi/variability-shiny) can be used to load and explore the package results towards an improved investigation experience and even to allow the use of these functions to those users non-experienced in R coding.
+The `EHRtemporalVariability` package contains functions to delineate temporal dataset shifts in Electronic Health Records through the projection and visualization of dissimilarities among data temporal batches. This is done through the estimation of data statistical distributions over time and their projection in non-parametric statistical manifolds, uncovering the patterns of the data latent temporal variability. Dataset shifts can be explored and identified through visual analytics formats such as Data Temporal heatmaps and Information Geometric Temporal (IGT) plots [@saez_probabilistic_2015; @saez2016applying; @saez2018kinematics]. An additional [EHRtemporalVariability Shiny app](https://github.com/hms-dbmi/EHRtemporalVariability-shiny) can be used to load and explore the package results towards an improved investigation experience and even to allow the use of these functions to those users non-experienced in R coding.
 
 ## Background
 Biomedical Data research repositories and property biomedical research databases are becoming bigger both in terms of sample size and collected variables [@Gewin2016; @Andreu-Perez2015]. Two significant reasons behind of this are the widespread adoption of data-sharing initiatives and technological infrastructures, and the continuous and systematic population of those repositories over longer periods of time. However, these two situations can also introduce potential confounding factors in data which may hinder their reuse for research, such as in population research or in statistical and machine learning modeling. Concretely, differences in protocols, populations, or even unexpected biases, either caused by systems or humans, can lead to temporal dataset shifts [@quionero2009dataset; @moreno2012unifying], changes of reference which are reflected in the statistical distributions of data. This temporal variability of data represent a Data Quality (DQ) issue which must be addressed for a reliable data reuse [@saez2016applying; @schlegel2017secondary].
@@ -234,7 +234,7 @@ probMapsWithSupports <- estimateDataTemporalMap(data           = datasetPheWAS,
                                     supports       = supports)
 ```
 
-## Trims a DataTemporalMap object
+## Trim a DataTemporalMap object
 Additionally, the `EHRtemporalVariability` R package contains a function that allows the user to trim any `DataTemporalMap` object according to a start and end date. 
 
 The `trimDataTemporalMap` function needs as input the following arguments:
@@ -264,29 +264,29 @@ The `estimateIGTProjection` function estimates a `IGTProjection` object from a `
   - _dimensions_: integer value indicating the number of dimensions for the projection.
   - _startDate_: a Date object indicating the date at which to start the analysis, in case of being different from the first chronological date in the date column (the default).
   - _endDate_: a Date object indicating the date at which to end the analysis, in case of being different from the last chronological date in the date column (the default).
+  - _embeddingType_: the type of embedding in order to obtain the non-parametric Statistical Manifold, from `classicalmds` and `nonmetricmds`, with `classicalmds` as default. 
 
 
 The `estimateIGTProjection` function output is a `IGTProjection` object.
 
-```{r estimateIGTProjection, eval=FALSE}
+```{r estimateIGTProjection, eval=TRUE}
 igtProj <- estimateIGTProjection( dataTemporalMap = probMaps[[1]], 
-                                  dimensions      = 3, 
+                                  dimensions      = 2, 
                                   startDate       = "2000-01-01", 
                                   endDate         = "2010-12-31")
 ```
 
-In the previous specific example, the `estimateIGTProjection` function has been applied to the X variables present in the previous `DataTemporalMap` object. As a result, a list of X `IGTProjection` objects is obtained.
+The `estimateIGTProjection` function can be applied to one `DataTemporalMap` object. As a result, an `IGTProjection` object is obtained.
 
-```{r estimateIGTProjectionOutput, eval=FALSE}
+```{r estimateIGTProjectionOutput, eval=TRUE}
 class( igtProj )
 ```
 
-The `sapply` function can be used if the `estimateIGTProjection` function needs to be applied to the output from `estimateDataTemporalMap` function including more than one variables, which result is a list of `DataTemporalMap` objects, as follows:
+The `sapply` function can be used to apply the `estimateIGTProjection` function to the output from `estimateDataTemporalMap` function including more than one variable, which result is a list of `DataTemporalMap` objects, as follows:
 
 ```{r sapplyestimateIGTProjection, eval=FALSE}
 igtProjs <- sapply ( probMaps, estimateIGTProjection )
 names( igtProjs ) <- names( probMaps )
-class( igtProj[[ 1 ]] )
 ```
 
 # Data visualization
@@ -328,7 +328,8 @@ The `plotIGTProjection` function returns an interactive Information Geometric Te
   - _dimensions_: the number of dimensions of the plot (2 or 3).
    - _startDate_: a Date object indicating the first date to be displayed in the IGT plot. By default the first date of the IGTProjection object. 
   - _endDate_: a Date object indicating the last date to be displayed in the IGT plot By default the last date of the IGTProjection object.
-  - _colorPalette_: the color palette to be used. 
+  - _colorPalette_: the color palette to be used.
+  - _trajectory_:  whether to show an estimated trajectory of the information evolution over time. 
 
 ```{r plotIGTprojection, eval=TRUE}
 plotIGTProjection( 
@@ -358,7 +359,19 @@ To track the temporal evolution, temporal batches are labeled to show their date
 | November | N         |
 | December | D         |
 
-## Exporting data for the Shiny app dashboard
+### Visualize temporal trajectory {#trajectory}
+
+The `plotIGTProjection` function allows overlying to both 2D and 3D IGT plots an smoothed trajectory of the information evolution over time, which is calculated with smoothed splines. To plot the trajectory set the _trajectory_ parameter to `TRUE`.
+
+```{r plotIGTprojectionTrajectory, eval=TRUE}
+plotIGTProjection( 
+    igtProjection   =  igtProjs[["diagcode1-phewascode"]],
+    colorPalette    = "Spectral", 
+    dimensions      = 2,
+    trajectory      = TRUE)
+```
+
+## Export data for the Shiny app dashboard
 
 The [EHRtemporalVariability Shiny app](https://github.com/hms-dbmi/variability-shiny) allows loading your own .csv file through simple configuration steps but, however, with limited data pre-processing. Consequently, users can export the DataTemporalHeatmaps and IGTplots generated from the R package as an .RData file for their exporation through the interactive Shiny app dashboard. The export is done as follows (note that both DataTemporalHeatmaps and IGTplots must be lists of same size where the names of their items correspond to the variable names):
 
@@ -368,17 +381,72 @@ names( igtProjs )
 save(probMaps, igtProjs, file = "myExport.RData")
 ```
 
-# Summary of `EHRtemporalVariability` functions available
+# Interpretation of temporal changes in IGT projections
+
+## Types of temporal changes
+
+According to the layout of time batches in IGT projections we define the following four types of temporal changes (quoting text from our previous publication [@saez2018kinematics]):
+
+* _Trend:_ Continuous and smooth change in the probability distributions of time batches over time, along the full-time period, or within a sub-period. Trends can be linear or, more generally, curved. Trends are represented in the IGT projection as a continuous flow of time batches through a time-related direction related.
+
+* _Abrupt change:_ A sudden change in probability distributions at a specific time point, leading to a new data inherent concept which is maintained afterwards. Abrupt changes are represented in the IGT projection as a gap between two groups of continuous time batches. Multiple abrupt changes can occur in a data repository, splitting the dataset into multiple clusters of time batches (see the definition of temporal subgroups). A single time batch could be abruptly separated from the rest, generally due to some specific context in its data (e.g., transient states, incomplete batches), in that case, we will talk about an _outlier batch_.
+
+* _Temporal subgroups:_ Conceptually related groups of time periods at which probability distributions are similar within a group, but dissimilar between groups, i.e., forming clusters of time batches. Abrupt changes do generally split data into temporal subgroups. A consecutive time flow between batches at two temporal subgroups would indicate a recurrent behaviour. An outlier batch will not be considered within any subgroup.
+
+* _Seasonality:_ Repetition of some change patterns at a specific time period throughout the IGT projection. Seasonality should be represented in the IGT projection as repetitive cycles over the general temporal flow. We could find local seasonality, within a specific time period, or global seasonality, along the full study period. Global seasonality should be maintained even across multiple temporal subgroups, e.g., in a data repository which is partitioned on various temporal subgroups, a global yearly variation should be maintained across the different subgroups.
+
+## Example
+
+To ilulstrate this example we will refer to the IGT plot for variable `diagcode1-phewascode` shown in the [temporal trajectory visualization](#trajectory) section. In that IGT plot we can find the following changes.
+
+* _Trend:_ A main trend through the entire period of study can be found across dimension D1, where there is a continuous flow of time batches. This is possibly associated to smooth population changes over time, e.g, including changes in life expectancy.
+
+* _Seasonality:_ There is an evident yearly seasonality through the entire period of study layering across dimension D2, and highlighted by the batches coloring scheme and cycles on the trajectory. This is likely associated to the yearly seasonality of diseases.
+
+* _Abrupt change:_ There is an abrupt change which splits the main trend between 2007 and 2008, with an apparent minor transient start in November 2007. This is possibly related to changes in the hospitals providing data to the NHDS as well as yearly ICD-9-CM updates in 2007. Another minor abrupt change shows as well between 2004 and 2005, with possible equivalent causes.
+
+* _Temporal subgroups:_ The abrupt changes described before define as well distinct temporal subgroups. One possibility to validate them is using clustering algorithms. As an example, we can apply the DBSCAN clustering algorithm to the IGT projection points, to obtain the following results.
+
+```{r dbscan, message=FALSE, eval=FALSE, warning=FALSE}
+install.packages("dbscan")
+library(dbscan)
+```
+
+```{r dbscantrue, echo=FALSE, message=FALSE, eval=TRUE, warning=FALSE}
+library(dbscan)
+```
+
+```{r temporalSubgroupsClustering, eval=TRUE}
+# We set the minimum number of batches in a subgroup as 2 
+# We set eps based on the knee of the following KNNdistplot, at around 0.023
+# kNNdistplot(igtProj@projection, k = 2, all = FALSE)
+igtProj = igtProjs[["diagcode1-phewascode"]]
+# We select the 2 first dimensions for consistency with the IGT plot examples above
+dbscanResults <- dbscan(igtProj@projection[,c(1,2)], eps = 0.023, minPts = 2)
+clusterNames  <- vector(mode = "character", length = 10)
+clusterNames[dbscanResults$cluster == 0] <- "Outlier batches"
+clusterNames[! dbscanResults$cluster == 0] <- paste("Temporal subgroup",dbscanResults$cluster[! dbscanResults$cluster == 0])
+plotly::plot_ly(x = igtProj@projection[,1], y = igtProj@projection[,2],
+              color = as.factor(clusterNames),
+              type = "scatter", mode = "markers",
+              text = paste0("Date: ",igtProj@dataTemporalMap@dates)) %>%
+              plotly::config(displaylogo = FALSE)
+```
+
+<span style="background-color:LemonChiffon">Note that the sensitivity of the cluster validation can be refined by using IGT projections at 3 or more dimensions, modifying the DBSCAN parameters, or using other clustering algorithms.</span>
+
+# Summary of `EHRtemporalVariability` available functions
 
 | Input Object    | `EHRtemporalVariability` function | Output Generated                                |
 | ----------------|-----------------------|---------------------------------------------------|
 | data.frame       | `formatDate`             | Given a data.frame object with a column of dates in 'character' format, it generates a new data.frame object with the dates transformed into "Date" R format.|
 | data.frame       | `icd9toPheWAS`        | Given a data.frame object with a column of ICD9-CM codes, it generates a new data.frame object with the ICD9-CM codes transformed into PheWAS codes |
 | data.frame       | `estimateDataTemporalMap` | Given a data.frame object containing individuals in rows and the variables in columns, it generates a `DataTemporalMap` object or a list of DataTemporalMap objects depending on the number of analysis variables |
-| `DataTemporalMap`| `trimDataTemporalMap` | Given a  `DataTemporalMap` object, it generates a trim `DataTemporalMap` object |
-| `DataTemporalMap`| `estimateIGTProjection` | Given a  `estimateDataTemporalMap` object, it generates a `IGTProjection` object or a list of `IGTProjection` objects depending on the number of analysis variables |
-| `DataTemporalMap`| `plotDataTemporalMap` | Given a  `DataTemporalMap` object, it generates an interactive heatmap |
-| `IGTProjection`| `plotIGTProjection` | Given a  `IGTProjection` object, it generates an interactive Information Geometric Temporal (IGT) plot |
+| `DataTemporalMap`| `trimDataTemporalMap` | Given a `DataTemporalMap` object, it generates a trimmed `DataTemporalMap` object |
+| `DataTemporalMap`| `estimateIGTProjection` | Given a `DataTemporalMap` object, it generates a `IGTProjection` object |
+| `DataTemporalMap`| `plotDataTemporalMap` | Given a `DataTemporalMap` object, it generates an interactive heatmap |
+| `IGTProjection`| `plotIGTProjection` | Given an `IGTProjection` object, it generates an interactive Information Geometric Temporal (IGT) plot |
+| `IGTProjection`| `estimateIGTTrajectory` | Given an`IGTProjection` object, it estimates a trajectory of the information temporal evolution in a IGT projection by fitting a cubic smoothing spline |
 
 : (\#tab:viz-opt) Functions in `EHRtemporalVariability` R package
 

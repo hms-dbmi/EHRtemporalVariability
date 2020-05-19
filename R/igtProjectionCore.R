@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-igtProjectionCore <- function(dataTemporalMap = NULL, dimensions = 3) {
+igtProjectionCore <- function(dataTemporalMap = NULL, dimensions = 3, embeddingType = "classicalmds") {
     
     dates = dataTemporalMap@dates
     temporalMap = dataTemporalMap@probabilityMap
@@ -44,9 +44,15 @@ igtProjectionCore <- function(dataTemporalMap = NULL, dimensions = 3) {
     # dissimMatrix[lower.tri(dissimMatrix, diag = FALSE)] = jsdists
     # dissimMatrix = as.dist(dissimMatrix)
     
-    vertices <- stats::cmdscale(dissimMatrix, eig = FALSE, k = dimensions)
+    embeddingResults = switch(embeddingType,
+                            "classicalmds" = {stats::cmdscale(dissimMatrix, eig = FALSE, k = dimensions, list. = TRUE)},
+                            "nonmetricmds" = {MASS::isoMDS(dissimMatrix, trace = FALSE, k = dimensions)}
+    )
     
-    igtProj = IGTProjection(dataTemporalMap = dataTemporalMap, projection = vertices)
-    
+    igtProj = switch(embeddingType,
+                     "classicalmds" = {IGTProjection(dataTemporalMap = dataTemporalMap, projection = embeddingResults$points, embeddingType = embeddingType, stress = 1-embeddingResults$GOF)},
+                     "nonmetricmds" = {IGTProjection(dataTemporalMap = dataTemporalMap, projection = embeddingResults$points, embeddingType = embeddingType, stress = embeddingResults$stress)}
+    )
+
     return(igtProj)
 }

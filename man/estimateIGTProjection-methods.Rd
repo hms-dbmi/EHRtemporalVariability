@@ -10,14 +10,16 @@ estimateIGTProjection(
   dataTemporalMap,
   dimensions = 3,
   startDate = NULL,
-  endDate = NULL
+  endDate = NULL,
+  embeddingType = "classicalmds"
 )
 
 \S4method{estimateIGTProjection}{DataTemporalMap}(
   dataTemporalMap,
   dimensions = 3,
   startDate = NULL,
-  endDate = NULL
+  endDate = NULL,
+  embeddingType = "classicalmds"
 )
 }
 \arguments{
@@ -33,10 +35,18 @@ in case of being different from the first chronological date in the date column
 \item{endDate}{a Date object indicating the date at which to end the analysis, 
 in case of being different from the last chronological date in the date column 
 (the default).}
+
+\item{embeddingType}{the type of embedding to apply to the dissimilarity matrix of time batches
+in order to obtain the non-parametric Statistical Manifold, from "classicalmds" and "nonmetricmds", 
+with "classicalmds" as default. "classicalmds" uses the base R stats::cmdscale function, while "nonmetricmds"
+uses the MASS:isoMDS function. The returned stress format will depend on the selected embedding type:
+"classicalmds" returns 1-GOF as returned by stats::cmdscale function, "nonmetricmds" returns the final stress
+in percent, as returned by the MASS::isoMDS function}
 }
 \value{
 An \code{IGTProjection} object containing the projected coordinates of each
-temporal batch in the embedded non-parametric Statistical Manifold
+temporal batch in the embedded non-parametric Statistical Manifold, as well as the
+embedding stress according to the embeddingType.
 }
 \description{
 Estimates an \code{IGTProjection} object from a \code{DataTemporalMap} object.
