@@ -148,7 +148,7 @@ setGeneric (name       = "plotDataTemporalMap",
 #' over time can be shown using the optional "trajectory" parameter.
 #' *Month abbreviations: \{'J', 'F', 'M', 'A', 'm', 'j', 'x', 'a', 'S', 'O', 'N', 'D'\}.
 #'
-#' Note that since the projection is based on Multi Dimensional Scaling, a 2 dimensional 
+#' Note that since the projection is based on multidimensional scaling, a 2 dimensional 
 #' projection entails a loss of information compared to a 3 dimensional projection. E.g., periodic 
 #' variability components such as seasonal effect can be hindered by an abrupt change or a general trend.
 #'

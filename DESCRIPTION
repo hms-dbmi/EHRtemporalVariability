@@ -11,10 +11,10 @@ Description: Contains functions to delineate temporal dataset shifts in Electron
              latent temporal variability. EHRtemporalVariability is particularly suited to multi-modal 
              data and categorical variables with a high number of values, common features of biomedical 
              data where traditional statistical process control or time-series methods may not be suitable. 
-             Dataset shifts can be explored and identified through visual analytics formats such as Data 
-             Temporal heatmaps and Information Geometric Temporal (IGT) plots. An additional 
-             'EHRtemporalVariability' Shiny app can be used to load and explore the package results and 
-             even to allow the use of these functions to those users non-experienced in R coding. 
+             EHRtemporalVariability allows you to explore and identify dataset shifts through visual 
+             analytics formats such as Data Temporal heatmaps and Information Geometric Temporal (IGT) plots. 
+             An additional EHRtemporalVariability Shiny app can be used to load and explore the package 
+             results and even to allow the use of these functions to those users non-experienced in R coding. 
              Preprint published in medRxiv (Sáez et al. 2020) <doi:10.1101/2020.04.07.20056564>.
 Depends:
     R (>= 3.3.0),
