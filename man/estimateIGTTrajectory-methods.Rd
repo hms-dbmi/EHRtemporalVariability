@@ -12,7 +12,7 @@ estimateIGTTrajectory(igtProjection, nPoints = NULL)
 \item{nPoints}{the number of points to fit within the IGT projection range. By default 10x the number of time batches, what shows a high resolution trajectory.}
 }
 \value{
-A list containing a \code{data.frame} of the estimated trajectory points and the fitted trajectory function as \code{smooth.spline} objects.
+A list containing a \code{data.frame} of the estimated trajectory points, the estimated date for each point, and the fitted trajectory function as \code{smooth.spline} objects.
 }
 \description{
 Estimates a \code{DataTemporalMap} from a \code{data.frame} containing individuals in rows and the 

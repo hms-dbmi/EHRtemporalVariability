@@ -1,3 +1,7 @@
+# EHRtemporalVariability 1.1.1
+
+* Fixed issues when plotting IGT projections trajectories by filtering by date or at weekly period.
+
 # EHRtemporalVariability 1.1.0
 
 * Added function `estimateIGTTrajectory` to estimate a trajectory of the information temporal evolution in a IGT projection by fitting a cubic smoothing spline.

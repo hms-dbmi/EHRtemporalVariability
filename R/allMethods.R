@@ -158,6 +158,12 @@ setMethod(f="plotIGTProjection",
               projection = igtProjection@projection[dateidxs,]
               ndates = length(dates)
               
+              if( trajectory ){
+                  igtTrajectory = estimateIGTTrajectory(igtProjection)
+                  trajectorydatesidxs = igtTrajectory$dates >= startDate & igtTrajectory$dates <= endDate
+                  igtTrajectoryPoints = igtTrajectory$points[trajectorydatesidxs,]
+              }
+              
               if (igtProjection@dataTemporalMap@period == "year"){
                   yearcolor = switch(colorPalette,
                                      "Spectral"         = grDevices::colorRampPalette(RColorBrewer::brewer.pal(11,"Spectral"))(ndates),
@@ -235,10 +241,9 @@ setMethod(f="plotIGTProjection",
                   }
                   
                   if( trajectory ){
-                      igtTrajectory = estimateIGTTrajectory(igtProjection)
-                      p <- plotly::add_trace(p, x = igtTrajectory$points$D1, y = igtTrajectory$points$D2,
+                      p <- plotly::add_trace(p, x = igtTrajectoryPoints$D1, y = igtTrajectoryPoints$D2,
                                              type = 'scatter', mode = 'lines', line = list(color = "#21908C", width = 1),
-                                             hovertext = sprintf("Approx. date: %s",rownames(igtTrajectory$points))) %>% plotly::hide_colorbar()
+                                             hovertext = sprintf("Approx. date: %s",igtTrajectory$dates[trajectorydatesidxs])) %>% plotly::hide_colorbar()
                   }
                   
                   return(p)
@@ -296,9 +301,8 @@ setMethod(f="plotIGTProjection",
                   }
                   
                   if( trajectory ){
-                      igtTrajectory = estimateIGTTrajectory(igtProjection)
-                      p <- plotly::add_paths(p, x = igtTrajectory$points$D1, y = igtTrajectory$points$D2, z = igtTrajectory$points$D3,
-                                             color = 1:nrow(igtTrajectory$points), hovertext = sprintf("Approx. date: %s",rownames(igtTrajectory$points))) %>% plotly::hide_colorbar()
+                      p <- plotly::add_paths(p, x = igtTrajectoryPoints$D1, y = igtTrajectoryPoints$D2, z = igtTrajectoryPoints$D3,
+                                             color = 1:nrow(igtTrajectoryPoints), hovertext = sprintf("Approx. date: %s",igtTrajectory$dates[trajectorydatesidxs])) %>% plotly::hide_colorbar()
                   }
                   
                   return(p)

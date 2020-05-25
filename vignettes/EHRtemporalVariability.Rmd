@@ -1,6 +1,6 @@
 ---
 title: "EHRtemporalVariability: Delineating temporal dataset shifts in Electronic Health Records"
-date: "May 19, 2020"
+date: "May 25, 2020"
 package: "EHRtemporalVariability `r packageVersion('EHRtemporalVariability')`"
 author:
 - name: Carlos Sáez

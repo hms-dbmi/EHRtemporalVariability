@@ -23,7 +23,7 @@
 #' @rdname estimateIGTTrajectory-methods
 #' @param igtProjection of class \code{IGTProjection}.
 #' @param nPoints the number of points to fit within the IGT projection range. By default 10x the number of time batches, what shows a high resolution trajectory.
-#' @return A list containing a \code{data.frame} of the estimated trajectory points and the fitted trajectory function as \code{smooth.spline} objects.
+#' @return A list containing a \code{data.frame} of the estimated trajectory points, the estimated date for each point, and the fitted trajectory function as \code{smooth.spline} objects.
 #' @examples
 #' load(system.file("extdata",
 #'                  "variabilityDemoNHDSdiagcode1-phewascode.RData",
@@ -50,14 +50,14 @@ estimateIGTTrajectory <- function(igtProjection, nPoints = NULL) {
     trajectoryFunction <- vector(mode = "list")
     points = data.frame(matrix(nrow = nPoints, ncol = nDims))
     names(points) <- sprintf("D%d",1:nDims)
-    rownames(points) <- seq(min(igtProjection@dataTemporalMap@dates), max(igtProjection@dataTemporalMap@dates), length.out = nPoints)
+    dates <- seq(min(igtProjection@dataTemporalMap@dates), max(igtProjection@dataTemporalMap@dates), length.out = nPoints)
     
     for (i in 1:nDims) {
         trajectoryFunction[[names(points)[i]]] = stats::smooth.spline(igtProjection@projection[,i])
         points[,i] = stats::predict(trajectoryFunction[[names(points)[i]]], tt)$y
     }
     
-    results <- list("points" = points, "trajectoryFunction" = trajectoryFunction)
+    results <- list("points" = points, "dates" = dates, "trajectoryFunction" = trajectoryFunction)
     return(results)
 }
 
