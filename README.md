@@ -1,6 +1,6 @@
 # EHRtemporalVariability [![](http://www.r-pkg.org/badges/version/EHRtemporalVariability)](https://cran.r-project.org/package=EHRtemporalVariability) [![](http://cranlogs.r-pkg.org/badges/grand-total/EHRtemporalVariability)](http://cranlogs.r-pkg.org/badges/grand-total/EHRtemporalVariability)
 
-`EHRtemporalVariability` is an R package for delineating temporal dataset shifts in Eletronic Health Records
+R package for delineating temporal dataset shifts in Electronic Health Records
 
 ## What is this repository for?
 Functions to delineate temporal dataset shifts in Electronic Health Records through the projection and visualization of dissimilarities among data temporal batches. This is done through the estimation of data statistical distributions over time and their projection in non-parametric statistical manifolds, uncovering the patterns of the data latent temporal variability. Dataset shifts can be explored and identified through visual analytics formats such as Data Temporal Heatmaps (DTHs) and Information Geometric Temporal (IGT) plots [1-3](https://github.com/hms-dbmi/EHRtemporalVariability#Citation). An additional [EHRtemporalVariability Shiny app](https://github.com/hms-dbmi/EHRtemporalVariability-shiny) can be used to load and explore the package results and even to allow the use of these functions to those users non-experienced in R coding.
@@ -31,7 +31,7 @@ Our method is based upon the estimation and comparison of data statistical distr
 
 If you use EHRtemporalVariability, please cite:
 
-Sáez C, Gutiérrez-Sacristán A, Kohane I, García-Gómez JM, Avillach P. EHRtemporalVariability: delineating temporal dataset shifts in electronic health records. Preprint submitted to medRxiv. https://doi.org/10.1101/2020.04.07.20056564
+Sáez C, Gutiérrez-Sacristán A, Kohane I, García-Gómez JM, Avillach P. EHRtemporalVariability: delineating temporal dataset shifts in electronic health records. Accepted in GigaScience. 2020. Preprint submitted to medRxiv. https://doi.org/10.1101/2020.04.07.20056564
 
 Consider also citing any of the original methods and case studies describing the approach:
 

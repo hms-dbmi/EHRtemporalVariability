@@ -27,7 +27,6 @@ License: Apache License 2.0 | file LICENSE
 LazyData: true
 Imports:
     plotly,
-    shiny,
     zoo,
     xts,
     lubridate,
@@ -35,9 +34,8 @@ Imports:
     viridis,
     scales,
     methods,
-    MASS,
-    dbscan
-Suggests: knitr, rmarkdown, devtools, BiocStyle
+    MASS
+Suggests: knitr, rmarkdown, devtools, BiocStyle, dbscan
 VignetteBuilder: knitr
 NeedsCompilation: no
 Authors@R: c(
