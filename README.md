@@ -31,7 +31,7 @@ Our method is based upon the estimation and comparison of data statistical distr
 
 If you use EHRtemporalVariability, please cite:
 
-Sáez C, Gutiérrez-Sacristán A, Kohane I, García-Gómez JM, Avillach P. EHRtemporalVariability: delineating temporal dataset shifts in electronic health records. Accepted in GigaScience. 2020. Preprint submitted to medRxiv. https://doi.org/10.1101/2020.04.07.20056564
+Sáez C, Gutiérrez-Sacristán A, Kohane I, García-Gómez JM, Avillach P. EHRtemporalVariability: delineating temporal data-set shifts in electronic health records. GigaScience, Volume 9, Issue 8, August 2020, giaa079. https://doi.org/10.1093/gigascience/giaa079
 
 Consider also citing any of the original methods and case studies describing the approach:
 
