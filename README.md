@@ -1,4 +1,4 @@
-# EHRtemporalVariability [![](http://www.r-pkg.org/badges/version/EHRtemporalVariability)](https://cran.r-project.org/package=EHRtemporalVariability) [![](http://cranlogs.r-pkg.org/badges/grand-total/EHRtemporalVariability)](http://cranlogs.r-pkg.org/badges/grand-total/EHRtemporalVariability)
+# EHRtemporalVariability [![](https://www.r-pkg.org/badges/version/EHRtemporalVariability)](https://cran.r-project.org/package=EHRtemporalVariability) [![](https://cranlogs.r-pkg.org/badges/grand-total/EHRtemporalVariability)](https://cranlogs.r-pkg.org/badges/grand-total/EHRtemporalVariability)
 
 R package for delineating temporal dataset shifts in Electronic Health Records
 
@@ -15,7 +15,7 @@ Our method is based upon the estimation and comparison of data statistical distr
 
 ## Package' Status
 
- * __Version__: 1.1.1
+ * __Version__: 1.1.2
  * __Authors__: Carlos Sáez (UPV-HMS), Alba Gutiérrez-Sacristán (HMS), Isaac Kohane (HMS), Juan M García-Gómez (UPV), Paul Avillach (HMS)
  * __Maintainer__: Carlos Sáez (UPV-HMS)
  

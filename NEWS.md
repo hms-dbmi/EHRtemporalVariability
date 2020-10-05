@@ -1,3 +1,7 @@
+# EHRtemporalVariability 1.1.2
+
+* Added `webshot` package to suggest list in DESCRIPTION to avoid Vignette compilation issues.
+
 # EHRtemporalVariability 1.1.1
 
 * Fixed issues when plotting IGT projections trajectories by filtering by date or at weekly period.

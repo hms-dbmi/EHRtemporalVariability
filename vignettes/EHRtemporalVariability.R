@@ -16,17 +16,17 @@ library(EHRtemporalVariability)
 #  install_github("hms-dbmi/EHRtemporalVariability")
 #  library( EHRtemporalVariability )
 
-## ----EHRtemporalVariabilityObj1, echo = FALSE, eval = TRUE--------------------
-githubURL <- "http://github.com/hms-dbmi/EHRtemporalVariability-DataExamples/raw/master/variabilityDemoNHDS.RData"
+## ----EHRtemporalVariabilityObj1, echo = FALSE, eval = TRUE, warning=FALSE-----
+githubURL <- "https://github.com/hms-dbmi/EHRtemporalVariability-DataExamples/raw/master/variabilityDemoNHDS.RData"
 load(url(githubURL))
 
-## ----variabilityObj2, eval=TRUE-----------------------------------------------
+## ----variabilityObj2, eval=TRUE, warning=FALSE--------------------------------
 class( probMaps$`diagcode1-phewascode` )
 
-## ----igtProjObj, eval=TRUE----------------------------------------------------
+## ----igtProjObj, eval=TRUE, warning=FALSE-------------------------------------
 class( igtProjs$`diagcode1-phewascode` )
 
-## ----readCSV, eval=TRUE-------------------------------------------------------
+## ----readCSV, eval=TRUE, warning=FALSE----------------------------------------
 dataset <- read.csv2( "http://github.com/hms-dbmi/EHRtemporalVariability-DataExamples/raw/master/nhdsSubset.csv", 
                       sep  = ",",
                       header = TRUE, 
@@ -35,7 +35,7 @@ dataset <- read.csv2( "http://github.com/hms-dbmi/EHRtemporalVariability-DataExa
                                       "numeric" , rep( "factor", 22 ) ) )
 head( dataset)
 
-## ----formatDate2, eval=TRUE---------------------------------------------------
+## ----formatDate2, eval=TRUE, warning=FALSE------------------------------------
 class( dataset$date )
 datasetFormatted <- EHRtemporalVariability::formatDate(
               input         = dataset,
@@ -55,16 +55,16 @@ datasetPheWAS <- icd9toPheWAS(data           = datasetFormatted,
 
 head( datasetPheWAS[, c( "diagcode1", "diagcode1-phewascode")] )
 
-## ----estimateDataTemporalMap, eval=FALSE--------------------------------------
+## ----estimateDataTemporalMap, eval=FALSE, warning=FALSE-----------------------
 #  probMaps <- estimateDataTemporalMap(data           = datasetPheWAS,
 #                                      dateColumnName = "date",
 #                                      period         = "month")
 
-## ----estimateDataTemporalMapOutput, eval=TRUE---------------------------------
+## ----estimateDataTemporalMapOutput, eval=TRUE, warning=FALSE------------------
 class( probMaps )
 class( probMaps[[ 1 ]] )
 
-## ----estimateDataTemporalMapSupport, eval=FALSE-------------------------------
+## ----estimateDataTemporalMapSupport, eval=FALSE, warning=FALSE----------------
 #  supports <- vector("list",2)
 #  names(supports) <- c("age","diagcode1")
 #  supports[[1]] <- 1:18
@@ -74,7 +74,7 @@ class( probMaps[[ 1 ]] )
 #                                      period         = "month",
 #                                      supports       = supports)
 
-## ----trimDataTemporalMap, eval=TRUE-------------------------------------------
+## ----trimDataTemporalMap, eval=TRUE, warning=FALSE----------------------------
 class( probMaps[[1]] )
 probMapTrimmed <- trimDataTemporalMap( 
                         dataTemporalMap = probMaps[[1]],
@@ -83,44 +83,44 @@ probMapTrimmed <- trimDataTemporalMap(
                                       )
 class( probMapTrimmed )
 
-## ----estimateIGTProjection, eval=TRUE-----------------------------------------
+## ----estimateIGTProjection, eval=TRUE, warning=FALSE--------------------------
 igtProj <- estimateIGTProjection( dataTemporalMap = probMaps[[1]], 
                                   dimensions      = 2, 
                                   startDate       = "2000-01-01", 
                                   endDate         = "2010-12-31")
 
-## ----estimateIGTProjectionOutput, eval=TRUE-----------------------------------
+## ----estimateIGTProjectionOutput, eval=TRUE, warning=FALSE--------------------
 class( igtProj )
 
-## ----sapplyestimateIGTProjection, eval=FALSE----------------------------------
+## ----sapplyestimateIGTProjection, eval=FALSE, warning=FALSE-------------------
 #  igtProjs <- sapply ( probMaps, estimateIGTProjection )
 #  names( igtProjs ) <- names( probMaps )
 
-## ----loadExampleFile, eval=TRUE-----------------------------------------------
+## ----loadExampleFile, eval=TRUE, warning=FALSE--------------------------------
 githubURL <- "https://github.com/hms-dbmi/EHRtemporalVariability-DataExamples/raw/master/variabilityDemoNHDS.RData"
 load(url(githubURL))
 
-## ----plotHeatmap, eval=TRUE---------------------------------------------------
+## ----plotHeatmap, eval=TRUE, warning=FALSE------------------------------------
 plotDataTemporalMap(
     dataTemporalMap =  probMaps[["diagcode1-phewascode"]],
     startValue = 2,
     endValue = 20,
     colorPalette    = "Spectral")
 
-## ----plotIGTprojection, eval=TRUE---------------------------------------------
+## ----plotIGTprojection, eval=TRUE, warning=FALSE------------------------------
 plotIGTProjection( 
     igtProjection   =  igtProjs[["diagcode1-phewascode"]],
     colorPalette    = "Spectral", 
     dimensions      = 2)
 
-## ----plotIGTprojectionTrajectory, eval=TRUE-----------------------------------
+## ----plotIGTprojectionTrajectory, eval=TRUE, warning=FALSE--------------------
 plotIGTProjection( 
     igtProjection   =  igtProjs[["diagcode1-phewascode"]],
     colorPalette    = "Spectral", 
     dimensions      = 2,
     trajectory      = TRUE)
 
-## ----saveRData, eval=FALSE----------------------------------------------------
+## ----saveRData, eval=FALSE, warning=FALSE-------------------------------------
 #  names( probMaps )
 #  names( igtProjs )
 #  save(probMaps, igtProjs, file = "myExport.RData")
@@ -132,7 +132,7 @@ plotIGTProjection(
 ## ----dbscantrue, echo=FALSE, message=FALSE, eval=TRUE, warning=FALSE----------
 library(dbscan)
 
-## ----temporalSubgroupsClustering, eval=TRUE-----------------------------------
+## ----temporalSubgroupsClustering, eval=TRUE, warning=FALSE--------------------
 # We set the minimum number of batches in a subgroup as 2 
 # We set eps based on the knee of the following KNNdistplot, at around 0.023
 # kNNdistplot(igtProj@projection, k = 2, all = FALSE)
