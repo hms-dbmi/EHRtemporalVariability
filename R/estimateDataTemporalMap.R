@@ -106,7 +106,7 @@ estimateDataTemporalMap <- function(data = NULL, dateColumnName = NULL, period =
         stop("The specified endDate must be of class Date")
     if ( any(!sapply(supports,class) %in% c('numeric', 'integer', 'character', 'factor')))
         stop("All the elements provided in the supports parameter must be of class data.frame")
-        
+    
     # Separate analysis data from analysis dates
     dates    <- data[[dateColumnName]]
     data     <- data[, setdiff(colnames(data),dateColumnName), drop = FALSE]
@@ -163,11 +163,11 @@ estimateDataTemporalMap <- function(data = NULL, dateColumnName = NULL, period =
                 varName <- names(supportsNew)[supportsProvidedIdx[i]]
                 supportsNew[[varName]] <- supports[[varName]]
                 errorInSupport = switch(dataClasses[varName],
-                       "factor" = {!class(supportsNew[[varName]]) %in% c("factor","character")},
-                       "numeric" = {!is.numeric(supportsNew[[varName]])},
-                       "integer" = {!is.integer(supportsNew[[varName]])},
-                       "character" = {!class(supportsNew[[varName]]) %in% c("factor","character")},
-                       "date" = {!is.integer(supportsNew[[varName]])}
+                                        "factor" = {!class(supportsNew[[varName]]) %in% c("factor","character")},
+                                        "numeric" = {!is.numeric(supportsNew[[varName]])},
+                                        "integer" = {!is.integer(supportsNew[[varName]])},
+                                        "character" = {!class(supportsNew[[varName]]) %in% c("factor","character")},
+                                        "date" = {!is.integer(supportsNew[[varName]])}
                 )
                 if ( errorInSupport )
                     stop(sprintf("The provided support for variable %s does not match with its variable type",names(supportsNew)[i]))
@@ -178,8 +178,29 @@ estimateDataTemporalMap <- function(data = NULL, dateColumnName = NULL, period =
     
     supports <- supportsNew
     
-    if( any(supportsToEstimate) && verbose )
+    if( any(supportsToEstimate) && verbose ){
         message("Estimating supports from data")
+        
+        allNA = sapply(data[,supportsToEstimate, drop = FALSE], FUN = function(x) all(is.na(x)))
+        
+        # Exclude from the analysis those variables with no finite values, if any
+        if(any(allNA)){
+            if( verbose )
+                message(sprintf("Removing variables with no finite values: %s", paste(names(data[,supportsToEstimate, drop = FALSE])[allNA], collapse = ", ")))
+            warning(sprintf("Removing variables with no finite values: %s", paste(names(data[,supportsToEstimate, drop = FALSE])[allNA], collapse = ", ")))            
+            
+            data = data[,!allNA]
+            nColumns <- ncol(data)
+            supports = supports[!allNA]
+            supportsToEstimate = supportsToEstimate[!allNA]
+            dataClasses = dataClasses[!allNA]
+            idxNumeric   <- dataClasses == "numeric"
+            idxInteger   <- dataClasses == "integer"
+            idxCharacter <- dataClasses == "character"
+            idxDate      <- dataClasses == "Date"
+            idxFactor    <- dataClasses == "factor"
+        }
+    }
     
     if ( any(idxFactor & supportsToEstimate) ){
         data[,idxFactor & supportsToEstimate] = lapply(data[,idxFactor & supportsToEstimate], addNA, ifany = TRUE)
@@ -189,6 +210,8 @@ estimateDataTemporalMap <- function(data = NULL, dateColumnName = NULL, period =
         mins = sapply(data[,idxNumeric & supportsToEstimate, drop = FALSE], min, na.rm = TRUE)
         maxs = sapply(data[,idxNumeric & supportsToEstimate, drop = FALSE], max, na.rm = TRUE)
         supports[idxNumeric & supportsToEstimate] = data.frame(mapply(seq, mins, maxs, length=rep(numericVariablesBins,length(mins))))
+        if ( any(mins == maxs) )
+            supports[idxNumeric & supportsToEstimate][mins == maxs] = lapply(supports[idxNumeric & supportsToEstimate][mins == maxs], FUN = function(x) x[1])
     }
     if ( any(idxInteger & supportsToEstimate) ){
         mins = sapply(data[,idxInteger & supportsToEstimate, drop = FALSE], min, na.rm = TRUE)
@@ -219,8 +242,8 @@ estimateDataTemporalMap <- function(data = NULL, dateColumnName = NULL, period =
     if(any(idxSuppSingles)){
         
         if( verbose )
-            message(sprintf("Removing variables with less than two levels in their supports: %s",paste(colnames(data)[idxSuppSingles],collapse = ", ")))
-        warning(paste("The following variable/s have less than two levels in their supports and were excluded from the analysis:",paste(colnames(data)[idxSuppSingles],collapse = ", ")))
+            message(sprintf("Removing variables with less than two distinct values in their supports: %s",paste(colnames(data)[idxSuppSingles],collapse = ", ")))
+        warning(paste("The following variable/s have less than two distinct values in their supports and were excluded from the analysis:",paste(colnames(data)[idxSuppSingles],collapse = ", ")))
         
         data = data[,!idxSuppSingles]
         supports = supports[!idxSuppSingles]
@@ -228,13 +251,16 @@ estimateDataTemporalMap <- function(data = NULL, dateColumnName = NULL, period =
         nColumns <- ncol(data)
     }
     
+    if(nColumns == 0)
+        stop("Zero remaining variables to be analyzed.")
+    
     # Estimate the Data Temporal Map
     dataClassesPost = sapply(data, class)
     results <- vector("list", nColumns)
     
     if( verbose )
         message("Estimating the data temporal maps")
-
+    
     for(i in 1:nColumns){
         
         if( verbose )
@@ -257,7 +283,7 @@ estimateDataTemporalMap <- function(data = NULL, dateColumnName = NULL, period =
                      "month" = xts::apply.monthly(dataxts, FUN = estimateAbsoluteFrequencies, varclass = dataClassesPost[i], support = supports[[i]], numericSmoothing = numericSmoothing),
                      "year" = xts::apply.yearly(dataxts, FUN = estimateAbsoluteFrequencies, varclass = dataClassesPost[i], support = supports[[i]], numericSmoothing = numericSmoothing)
         )
-
+        
         datesMap <- as.Date(zoo::index(map))
         seqDateFull <- seq.Date(min(datesMap),max(datesMap), by = period)
         dateGapsSmoothingDone = FALSE
@@ -309,7 +335,7 @@ estimateDataTemporalMap <- function(data = NULL, dateColumnName = NULL, period =
                        period         = period)
         results[[i]] = probMap
     }
-
+    
     if (nColumns > 1){
         names(results) <- colnames(data)
         if( verbose )
@@ -342,16 +368,16 @@ estimateAbsoluteFrequencies <- function(data = NULL, varclass = NULL, support = 
                        map = graphics::hist(data,histSupport,plot=FALSE,right=FALSE,include.lowest=TRUE)$counts
                    }
                    else{
-                       if (length(!is.na(data))<2){
+                       if (sum(!is.na(data))<4){
+                           warning(paste0("Estimating a 1-dimensional kernel density smoothing with less than 4 data points can result in an inaccurate estimation.",
+                                          " For more information see 'Density Estimation for Statistics and Data Analysis, Bernard. W. Silverman, CRC ,1986', chapter 4.5.2 'Required sample size for given accuracy'."))
+                       }
+                       if (sum(!is.na(data))<2){
                            data = rep(data[!is.na(data)],2)
                            ndata = 1
                        } else
                        {
-                           ndata = nrow(data)
-                       }
-                       if (length(!is.na(data))<4){
-                           warning(paste0("Estimating a 1-dimensional kernel density smoothing with less than 4 data points can result in an inaccurate estimation.",
-                                          " For more information see 'Density Estimation for Statistics and Data Analysis, Bernard. W. Silverman, CRC ,1986', chapter 4.5.2 'Required sample size for given accuracy'."))
+                           ndata = sum(!is.na(data))
                        }
                        dataDensity = stats::density(data, na.rm = T, from = support[1], to = support[length(support)], n = length(support))
                        map = (dataDensity$y/sum(dataDensity$y))*ndata

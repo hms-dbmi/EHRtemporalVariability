@@ -120,6 +120,23 @@ DataTemporalMap <- setClass( "DataTemporalMap",
          validity = checkDataTemporalMap
 )
 
+#' Class IGTProjection
+#'
+#' Class \code{IGTProjection} object contains the estimated Information Geometric Temporal plot projection
+#' of a \code{DataTemporalMap} object.
+#'
+#' Objects of this class are generated automatically by the \code{estimateIGTProjection} function, and can
+#' be passed to the \code{plotIGTProjection} function for plotting the Information Geometric Temporal plot.
+#'
+#' @name IGTProjection-class
+#' @rdname IGTProjection-class
+#' @aliases IGTProjection,IGTProjection-class
+#' @slot dataTemporalMap the \code{DataTemporalMap} object from which the projection was estimated
+#' @slot projection d-by-c \code{matrix} of the IGT projection for d temporal batches in c dimensions calculated from the \code{estimateIGTProjection} function
+#' @slot embeddingType embedding function used for the IGT projection calculation in the \code{estimateIGTProjection} function
+#' @slot stress stress achieved in the lower-dimensional embedding, depending on the embedding type (e.g., classicalmds will return 1-GOF as returned by stats::cmdscale function, and nonmetricmds will return final stress in percent, as returned by the MASS::isoMDS function)
+#' @return A \code{IGTProjection} object.
+#' 
 IGTProjection <- setClass( "IGTProjection",
            slots =
                c( 
