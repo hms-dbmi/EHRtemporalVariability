@@ -15,7 +15,7 @@ Our method is based upon the estimation and comparison of data statistical distr
 
 ## Package' Status
 
- * __Version__: 1.1.2
+ * __Version__: 1.1.3
  * __Authors__: Carlos Sáez (UPV-HMS), Alba Gutiérrez-Sacristán (HMS), Isaac Kohane (HMS), Juan M García-Gómez (UPV), Paul Avillach (HMS)
  * __Maintainer__: Carlos Sáez (UPV-HMS)
  
