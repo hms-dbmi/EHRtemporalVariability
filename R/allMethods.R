@@ -48,7 +48,10 @@ setMethod(f="estimateIGTProjection",
 #' @rdname plotDataTemporalMap-methods
 setMethod(f = "plotDataTemporalMap",
           signature  = "DataTemporalMap",
-          definition = function(dataTemporalMap, absolute, startValue, endValue, startDate, endDate, sortingMethod, colorPalette ){
+          definition = function(dataTemporalMap, absolute, startValue, endValue, startDate, endDate, sortingMethod, colorPalette, mode ){
+              
+              if (!mode %in% c("heatmap", "series"))
+                  stop("mode must be one of heatmap or series")
               
               if (!colorPalette %in% c("Spectral", "Viridis", "Magma", "Viridis-reversed", "Magma-reversed"))
                   stop("colorPalette must be one of Spectral, Viridis, Magma, Viridis-reversed or Magma-reversed")
@@ -128,13 +131,56 @@ setMethod(f = "plotDataTemporalMap",
                   l = min(max(nchar(support[startValue:endValue,1]))*(50),125)
               )
               
-              p <- plotly::plot_ly(x=dates, y=support[startValue:endValue,1], z = t(as.data.frame(temporalMap[,startValue:endValue])),
-                                   type = "heatmap", colorscale = colorScale, reversescale = TRUE) %>%
-                  plotly::config(staticPlot = FALSE, displayModeBar = TRUE, editable = FALSE,
-                                 sendData = FALSE, displaylogo = FALSE, 
-                                 modeBarButtonsToRemove = list("sendDataToCloud","hoverCompareCartesian"))%>%
-                  plotly::layout(xaxis = x, yaxis = y, title = ifelse(absolute, "Absolute frequencies data temporal heatmap", "Probability distribution data temporal heatmap" )) %>%
-                  plotly::layout(margin = m)
+              if (mode == 'heatmap') {
+                  p <- plotly::plot_ly(x=dates, y=support[startValue:endValue,1], z = t(as.data.frame(temporalMap[,startValue:endValue])),
+                                       type = "heatmap", colorscale = colorScale, reversescale = TRUE) %>%
+                      plotly::config(staticPlot = FALSE, displayModeBar = TRUE, editable = FALSE,
+                                     sendData = FALSE, displaylogo = FALSE, 
+                                     modeBarButtonsToRemove = list("sendDataToCloud","hoverCompareCartesian"))%>%
+                      plotly::layout(xaxis = x, yaxis = y, title = ifelse(absolute, "Absolute frequencies data temporal heatmap", "Probability distribution data temporal heatmap" )) %>%
+                      plotly::layout(margin = m)
+              }
+              else if (mode == 'series') {
+                  seriesNum=startValue:endValue
+                  title = switch(absolute+1, "Relative frequency", "Absolute frequency" )
+                  if (colorPalette == "Spectral"){
+                      p <- plotly::plot_ly(x=dates, y=temporalMap[,seriesNum[1]], name = support[seriesNum[1],1], type = 'scatter', mode = 'lines'
+                      ) %>%
+                          plotly::layout(title = paste0("Evolution of ",dataTemporalMap@variableName),
+                                         xaxis = list(title = "Date"),
+                                         yaxis = list (title = title)) %>%
+                          plotly::config(staticPlot = FALSE, displayModeBar = TRUE, editable = FALSE,
+                                         sendData = FALSE, displaylogo = FALSE, 
+                                         modeBarButtonsToRemove = list("sendDataToCloud","hoverCompareCartesian"))
+                      for (i in 2:length(seriesNum)) {
+                          p = p %>% plotly::add_trace(y=temporalMap[,seriesNum[i]], name = support[seriesNum[i],1], mode = 'lines'
+                          )
+                      }
+                  }
+                  else{
+                      maxColors = 6
+                      vals = seq(0, 1, length.out = maxColors)
+                      cols = switch(colorPalette,
+                                    "Viridis"          = scales::col_numeric(viridis::viridis(100), domain = NULL)(vals),
+                                    "Magma"            = scales::col_numeric(viridis::magma(100), domain = NULL)(vals),
+                                    "Viridis-reversed" = scales::col_numeric(viridis::viridis(100,direction = -1), domain = NULL)(vals),
+                                    "Magma-reversed"   = scales::col_numeric(viridis::magma(100,direction = -1), domain = NULL)(vals)
+                      )
+                      colorScale = setNames(data.frame(vals, cols),NULL)
+                      p <- plotly::plot_ly(x=dates, y=temporalMap[,seriesNum[1]], name = support[seriesNum[1],1], type = 'scatter', mode = 'lines',
+                                           line = list(color = colorScale[[1,2]])) %>%
+                          plotly::layout(title = paste0("Evolution of ",dataTemporalMap@variableName),
+                                         xaxis = list(title = "Date"),
+                                         yaxis = list (title = title)) %>%
+                          plotly::config(staticPlot = FALSE, displayModeBar = TRUE, editable = FALSE,
+                                         sendData = FALSE, displaylogo = FALSE, 
+                                         modeBarButtonsToRemove = list("sendDataToCloud","hoverCompareCartesian"))
+                      for (i in 2:length(seriesNum)) {
+                          p = p %>% plotly::add_trace(y=temporalMap[,seriesNum[i]], name = support[seriesNum[i],1], mode = 'lines',
+                                                      line = list(color = colorScale[[(i-1) %% maxColors + 1,2]]))
+                      }
+                  }
+              }
               
               return(p)
           }

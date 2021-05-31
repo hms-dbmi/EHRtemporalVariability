@@ -1,3 +1,7 @@
+# EHRtemporalVariability 1.1.4
+
+* Added time series plot as an alternative to heat map. This can be selected in the `plotDataTemporalMap` function using the new `mode` parameter.
+
 # EHRtemporalVariability 1.1.3
 
 * Fixed issue when a numerical input column has all its values as missing.

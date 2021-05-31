@@ -13,7 +13,8 @@ plotDataTemporalMap(
   startDate = min(dataTemporalMap@dates),
   endDate = max(dataTemporalMap@dates),
   sortingMethod = "frequency",
-  colorPalette = "Spectral"
+  colorPalette = "Spectral",
+  mode = "heatmap"
 )
 
 \S4method{plotDataTemporalMap}{DataTemporalMap}(
@@ -24,7 +25,8 @@ plotDataTemporalMap(
   startDate = min(dataTemporalMap@dates),
   endDate = max(dataTemporalMap@dates),
   sortingMethod = "frequency",
-  colorPalette = "Spectral"
+  colorPalette = "Spectral",
+  mode = "heatmap"
 )
 }
 \arguments{
@@ -54,6 +56,9 @@ color temperature scheme from blue, through yellow, to red (see "Spectral" palet
  colorblindness, including "Viridis", "Magma", and their reversed versions 
  "Viridis-reversed" and "Magma-reversed" (see "Viridis" and "Magma" palettes in the
  Viridis package).}
+
+\item{mode}{indicates the plot mode as a 'heatmap' (default) or 'series'.
+The other config parameters for the heatmap plot also apply for the series plot.}
 }
 \value{
 A plot object based on the \code{plotly} package.
@@ -70,6 +75,13 @@ p <- plotDataTemporalMap(dataTemporalMap =  probMaps[[1]],
                     colorPalette    = "Spectral",
                     startValue = 2,
                     endValue = 40)
+p
+
+p <- plotDataTemporalMap(dataTemporalMap =  probMaps[[1]],
+                    colorPalette    = "Spectral",
+                    startValue = 2,
+                    endValue = 40,
+                    mode = "series")
 p
 
 \dontrun{

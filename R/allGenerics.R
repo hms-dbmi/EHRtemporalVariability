@@ -97,6 +97,8 @@ setGeneric (name       = "estimateIGTProjection",
 #'  colorblindness, including "Viridis", "Magma", and their reversed versions 
 #'  "Viridis-reversed" and "Magma-reversed" (see "Viridis" and "Magma" palettes in the
 #'  Viridis package).
+#' @param mode indicates the plot mode as a 'heatmap' (default) or 'series'.
+#'  The other config parameters for the heatmap plot also apply for the series plot.
 #' @return A plot object based on the \code{plotly} package.
 #' @examples
 #' load(system.file("extdata",
@@ -107,6 +109,13 @@ setGeneric (name       = "estimateIGTProjection",
 #'                     colorPalette    = "Spectral",
 #'                     startValue = 2,
 #'                     endValue = 40)
+#' p
+#' 
+#' p <- plotDataTemporalMap(dataTemporalMap =  probMaps[[1]],
+#'                     colorPalette    = "Spectral",
+#'                     startValue = 2,
+#'                     endValue = 40,
+#'                     mode = "series")
 #' p
 #' 
 #' \dontrun{
@@ -125,7 +134,7 @@ setGeneric (name       = "estimateIGTProjection",
 #' @importFrom stats complete.cases setNames
 setGeneric (name       = "plotDataTemporalMap",
             valueClass = c("plotly","htmlwidget"),
-            def        = function(dataTemporalMap, absolute = FALSE, startValue = 1, endValue = ncol(dataTemporalMap@probabilityMap), startDate = min(dataTemporalMap@dates), endDate = max(dataTemporalMap@dates), sortingMethod = 'frequency', colorPalette = 'Spectral')
+            def        = function(dataTemporalMap, absolute = FALSE, startValue = 1, endValue = ncol(dataTemporalMap@probabilityMap), startDate = min(dataTemporalMap@dates), endDate = max(dataTemporalMap@dates), sortingMethod = 'frequency', colorPalette = 'Spectral', mode = 'heatmap')
             {
                 standardGeneric("plotDataTemporalMap")
             }
