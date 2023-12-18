@@ -51,7 +51,7 @@ formatDate <- function( input, dateColumn, dateFormat = "%y/%m/%d", verbose = FA
         stop()
     }
     
-    if( class( input[, colNum] ) ==  "Date" ){
+    if( inherits( input[, colNum], "Date" )){
         output <- input
     }else{
         

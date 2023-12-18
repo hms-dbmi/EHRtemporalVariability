@@ -18,7 +18,12 @@ library(EHRtemporalVariability)
 
 ## ----EHRtemporalVariabilityObj1, echo = FALSE, eval = TRUE, warning=FALSE-----
 githubURL <- "https://github.com/hms-dbmi/EHRtemporalVariability-DataExamples/raw/master/variabilityDemoNHDS.RData"
-load(url(githubURL))
+if (httr::http_error(githubURL)) {
+      message("URL not accessible or no internet connection.")
+      load(system.file("extdata","variabilityDemoNHDSdiagcode1-phewascode.RData",package="EHRtemporalVariability"))
+} else {
+    load(url(githubURL))
+}
 
 ## ----variabilityObj2, eval=TRUE, warning=FALSE--------------------------------
 class( probMaps$`diagcode1-phewascode` )
@@ -106,6 +111,13 @@ plotDataTemporalMap(
     startValue = 2,
     endValue = 20,
     colorPalette    = "Spectral")
+
+## ----plotSeries, eval=TRUE, warning=FALSE-------------------------------------
+plotDataTemporalMap(
+    dataTemporalMap =  probMaps[["diagcode1-phewascode"]],
+    startValue = 2,
+    endValue = 10,
+    mode = "series")
 
 ## ----plotIGTprojection, eval=TRUE, warning=FALSE------------------------------
 plotIGTProjection( 

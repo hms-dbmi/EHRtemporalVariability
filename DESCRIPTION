@@ -1,8 +1,8 @@
 Package: EHRtemporalVariability
 Type: Package
 Title: Delineating Temporal Dataset Shifts in Electronic Health Records
-Version: 1.1.4
-Date: 2021-05-31
+Version: 1.2.0
+Date: 2023-12-15
 Encoding: UTF-8
 Description: Functions to delineate temporal dataset shifts in Electronic Health 
              Records through the projection and visualization of dissimilarities 
@@ -21,10 +21,9 @@ Description: Functions to delineate temporal dataset shifts in Electronic Health
              functions to those users non-experienced in R coding. (Sáez et al. 2020)
              <doi:10.1093/gigascience/giaa079>.
 Depends:
-    R (>= 3.3.0),
+    R (>= 4.3.0),
     dplyr
 License: Apache License 2.0 | file LICENSE
-LazyData: true
 Imports:
     plotly,
     zoo,
@@ -35,7 +34,7 @@ Imports:
     scales,
     methods,
     MASS
-Suggests: knitr, rmarkdown, devtools, BiocStyle, dbscan, webshot
+Suggests: knitr, rmarkdown, devtools, BiocStyle, dbscan, webshot, httr
 VignetteBuilder: knitr
 NeedsCompilation: no
 Authors@R: c(
@@ -48,5 +47,5 @@ Authors@R: c(
   person("Department of Biomedical Informatics, Harvard Medical School", role = c("cph"))
   )
 Maintainer: Carlos Sáez <carsaesi@upv.es>
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3
 URL: https://github.com/hms-dbmi/EHRtemporalVariability

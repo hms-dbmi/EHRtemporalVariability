@@ -75,7 +75,7 @@ icd9toPheWAS <- function( data, icd9ColumnName, missingValues = "NA", phecodeDes
     }
     
     #check if the selected column is factor and if so coerce to character
-    if (class( input[[icd9ColumnName]] ) == 'factor'){
+    if (inherits( input[[icd9ColumnName]] , 'factor')){
         input[[icd9ColumnName]] <- as.character( input[[icd9ColumnName]] )
     }
 
@@ -183,7 +183,7 @@ icd9toPheWAS <- function( data, icd9ColumnName, missingValues = "NA", phecodeDes
     colnames( completeSet)[ colNum ] <- paste0( icd9ColumnName, "-phewascode")
     
     #if the selected icd9 column was factor, since it was converted to character then change it back to factor
-    if (replaceColumn == FALSE & class( data[[icd9ColumnName]] ) == 'factor'){
+    if (replaceColumn == FALSE & inherits( data[[icd9ColumnName]] , 'factor')){
         completeSet[[icd9ColumnName]] <- factor( completeSet[[icd9ColumnName]] )
     }
     
