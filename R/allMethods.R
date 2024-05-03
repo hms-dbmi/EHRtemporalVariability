@@ -91,7 +91,7 @@ setMethod(f = "plotDataTemporalMap",
                   if (sortingMethod  %in% 'frequency'){
                       supportOrder = order(colSums(temporalMap, na.rm = TRUE),decreasing = TRUE)
                   } else {
-                      supportOrder = order(support,decreasing = FALSE)
+                      supportOrder = order(support[,1],decreasing = FALSE)
                   }
                   
                   support = support[supportOrder,, drop = FALSE]

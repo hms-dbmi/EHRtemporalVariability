@@ -1,3 +1,7 @@
+# EHRtemporalVariability 1.2.1
+
+* Updated plotDataTemporalMap function to conform to new specifications of the order() function to avoid possible warning or error when plotting character or factor data in alphabetical order.
+
 # EHRtemporalVariability 1.2.0
 
 * Updated to R 4.3.0.
