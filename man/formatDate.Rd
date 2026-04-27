@@ -25,9 +25,9 @@ it generates a new \code{data.frame} object with the dates transformed into
 }
 \examples{
 
-dataset <- read.csv2(system.file("extdata",
-                                   "nhdsSubset.csv",
-                                   package="EHRtemporalVariability"), 
+dataset <- read.csv2(xzfile(system.file("extdata",
+                                   "nhdsSubset.csv.xz",
+                                   package="EHRtemporalVariability")), 
                      sep  = ",",
                      header = TRUE, 
                      na.strings = "", 

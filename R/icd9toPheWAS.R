@@ -32,9 +32,9 @@
 #' @return An object of class \code{data.frame} with the ICD9-CM column transform into
 #' PheWAS codes. 
 #' @examples
-#' dataset <- read.csv2(system.file("extdata",
-#'                                    "nhdsSubset.csv",
-#'                                    package="EHRtemporalVariability"), 
+#' dataset <- read.csv2(xzfile(system.file("extdata",
+#'                                    "nhdsSubset.csv.xz",
+#'                                    package="EHRtemporalVariability")), 
 #'                      sep  = ",",
 #'                      header = TRUE, 
 #'                      na.strings = "", 
@@ -58,9 +58,9 @@ icd9toPheWAS <- function( data, icd9ColumnName, missingValues = "NA", phecodeDes
     }
     
     #load the icd9 mapping file
-    icd9File <- read.delim( file   = system.file("extdata",
-                                                 "icd9mappingFile.csv",
-                                                 package="EHRtemporalVariability"),
+    icd9File <- read.delim( file   = xzfile(system.file("extdata",
+                                                 "icd9mappingFile.csv.xz",
+                                                 package="EHRtemporalVariability")),
                             header     = TRUE,
                             sep        = "\t",
                             colClasses = "character" )

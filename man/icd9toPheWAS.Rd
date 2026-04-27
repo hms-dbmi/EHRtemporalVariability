@@ -43,9 +43,9 @@ Given a  \code{data.frame} object with a column of ICD9-CM codes, it generates a
 new \code{data.frame} object with the ICD9-CM codes transformed into PheWAS codes.
 }
 \examples{
-dataset <- read.csv2(system.file("extdata",
-                                   "nhdsSubset.csv",
-                                   package="EHRtemporalVariability"), 
+dataset <- read.csv2(xzfile(system.file("extdata",
+                                   "nhdsSubset.csv.xz",
+                                   package="EHRtemporalVariability")), 
                      sep  = ",",
                      header = TRUE, 
                      na.strings = "", 

@@ -62,9 +62,9 @@ depending on the number of analysis variables.
 }
 \examples{
 #Load the file 
-dataset <- read.csv2(system.file("extdata",
-                                   "nhdsSubset.csv",
-                                   package="EHRtemporalVariability"), 
+dataset <- read.csv2(xzfile(system.file("extdata",
+                                   "nhdsSubset.csv.xz",
+                                   package="EHRtemporalVariability")), 
                      sep  = ",",
                      header = TRUE, 
                      na.strings = "", 

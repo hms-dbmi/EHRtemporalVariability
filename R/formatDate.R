@@ -25,9 +25,9 @@
 #' @return An object of class \code{data.frame} with the date column transform into 'Date' R class. 
 #' @examples
 #' 
-#' dataset <- read.csv2(system.file("extdata",
-#'                                    "nhdsSubset.csv",
-#'                                    package="EHRtemporalVariability"), 
+#' dataset <- read.csv2(xzfile(system.file("extdata",
+#'                                    "nhdsSubset.csv.xz",
+#'                                    package="EHRtemporalVariability")), 
 #'                      sep  = ",",
 #'                      header = TRUE, 
 #'                      na.strings = "", 

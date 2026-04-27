@@ -1,3 +1,7 @@
+# EHRtemporalVariability 1.2.2
+
+* Reduced installed package size to comply with CRAN policies by (i) removing prebuilt vignette artifacts from the source package, (ii) replacing large inst/extdata files with compressed xz data.
+
 # EHRtemporalVariability 1.2.1
 
 * Updated plotDataTemporalMap function to conform to new specifications of the order() function to avoid possible warning or error when plotting character or factor data in alphabetical order.

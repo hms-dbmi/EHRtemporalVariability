@@ -43,9 +43,9 @@ temporal map (relative frequency).}
 \examples{
 
 # Generation through estimateDataTemporalMap function:
-dataset <- read.csv2(system.file("extdata",
-                                   "nhdsSubset.csv",
-                                   package="EHRtemporalVariability"), 
+dataset <- read.csv2(xzfile(system.file("extdata",
+                                   "nhdsSubset.csv.xz",
+                                   package="EHRtemporalVariability")), 
                      sep  = ",",
                      header = TRUE, 
                      na.strings = "", 
