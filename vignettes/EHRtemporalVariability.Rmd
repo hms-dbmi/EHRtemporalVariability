@@ -1,38 +1,42 @@
 ---
-title: "EHRtemporalVariability: Delineating temporal dataset shifts in Electronic Health Records"
-date: "May 31, 2021"
+title: "EHRtemporalVariability: <br>
+Delineating temporal dataset shifts in  <br>
+Electronic Health Records"
+subtitle: |
+  <div style="font-size: 0.95em; font-weight: normal; line-height: 1.4; color: #444;">
+  
+  Carlos Sáez<sup>1,2</sup>, Alba Gutiérrez-Sacristán<sup>2</sup>, Isaac Kohane<sup>2</sup>, Juan M. García-Gómez<sup>1</sup>, Paul Avillach<sup>2</sup>  
+  
+  <span style="font-size: 0.9em;">
+  <sup>1</sup> Biomedical Data Science Lab, Institute of Information and Communication Technologies,<br>
+  Universitat Politècnica de València, Spain  
+  <sup>2</sup> Department of Biomedical Informatics, Harvard Medical School, USA  
+  </span>
+  
+  <span style="font-size: 0.9em;">✉️ carsaesi@upv.es</span>
+  
+  </div>
+date: "Apr 27, 2026"
 package: "EHRtemporalVariability `r packageVersion('EHRtemporalVariability')`"
-author:
-- name: Carlos Sáez
-  affiliation: 
-  - &id1 Biomedical Data Science Lab, Instituto Universitario de Tecnologías de la Información y Comunicaciones, Universitat Politècnica de València, Spain
-  - &id2 Department of Biomedical Informatics, Harvard Medical School, US
-  email: carsaesi@upv.es
-- name: Alba Gutiérrez-Sacristán
-  affiliation: *id2
-  email: Alba_Gutierrez@hms.harvard.edu
-- name: Isaac Kohane
-  affiliation: *id2
-  email: Isaac_Kohane@hms.harvard.edu
-- name: Juan M García-Gómez
-  affiliation: *id1
-  email: juanmig@upv.es
-- name: Paul Avillach
-  affiliation: *id2
-  email: Paul_Avillach@hms.harvard.edu
 bibliography: general-overview.bib
-csl: biomed-central.csl
 vignette: >
-    %\VignetteIndexEntry{EHRtemporalVariability}
-    %\VignetteEngine{knitr::rmarkdown}
-    %\VignetteEncoding{UTF-8}
-output: 
-    BiocStyle::html_document:
-    toc_float: true
+  %\VignetteIndexEntry{EHRtemporalVariability}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+output:
+  rmarkdown::html_vignette:
+    toc: true
+    number_sections: true
+link-citations: true
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE, warning=FALSE)
+knitr::opts_chunk$set(
+    echo = TRUE,
+    warning=FALSE,
+    fig.width = 7,
+    fig.height = 4,
+    out.width = "100%")
 ```
 
 # Introduction
@@ -40,7 +44,7 @@ The `EHRtemporalVariability` package contains functions to delineate temporal da
 
 If you use `EHRtemporalVariability` please cite:
 
-<span style="background-color:LemonChiffon">Carlos Sáez, Alba Gutiérrez-Sacristán, Isaac Kohane, Juan M García-Gómez, Paul Avillach. EHRtemporalVariability: delineating temporal data-set shifts in Electronic Health Records. GigaScience, Volume 9, Issue 8, August 2020, giaa079. [doi:10.1093/gigascience/giaa079](https://doi.org/10.1093/gigascience/giaa079)</span> [@saez2020]
+<span style="background-color:#eef5ff">Carlos Sáez, Alba Gutiérrez-Sacristán, Isaac Kohane, Juan M García-Gómez, Paul Avillach. EHRtemporalVariability: delineating temporal data-set shifts in Electronic Health Records. GigaScience, Volume 9, Issue 8, August 2020, giaa079. [doi:10.1093/gigascience/giaa079](https://doi.org/10.1093/gigascience/giaa079)</span> [@saez2020]
 
 
 ## Background
@@ -58,7 +62,12 @@ The tasks that can be performed with `EHRtemporalVariability` package are the fo
 
 In the following sections the specific functions that can be used to address each of these tasks are presented.
 
-![General workflow for using the EHRtemporalVariability R package](./rpackageworkflow.png)
+<figure style="text-align: center; margin: 1.5em 0;">
+  <img src="rpackageworkflow.png" style="width:60%;">
+  <figcaption style="font-size: 0.9em; color: #555;">
+    General workflow for using the EHRtemporalVariability R package
+  </figcaption>
+</figure>
 
 For more information about the methods please check reference [@saez_probabilistic_2015] and the Suplemental Material in [@saez2016applying].
 
@@ -111,7 +120,7 @@ class( probMaps$`diagcode1-phewascode` )
 `DataTemporalMap` object is the output of `estimateDataTemporalMap` function. It is used as input for `plotDataTemporalMap` functions.
 
 <br>
-<span style="background-color:LemonChiffon">Note that objects of this class can be generated automatically by the `estimateDataTemporalMap` function, but its construction and extension is open towards fostering its use through external methods. E.g., one may use additional probability distribution estimation methods, or even contruct compatible `DataTemporalMap` object for other unstructured data shuch as images or free text.</span>
+<span style="background-color:#eef5ff">Note that objects of this class can be generated automatically by the `estimateDataTemporalMap` function, but its construction and extension is open towards fostering its use through external methods. E.g., one may use additional probability distribution estimation methods, or even contruct compatible `DataTemporalMap` object for other unstructured data shuch as images or free text.</span>
 
 ### `IGTProjection`
 
@@ -124,7 +133,7 @@ class( igtProjs$`diagcode1-phewascode` )
 `IGTProjection` object is the output of `estimateIGTProjection` function. It is used as input for `plotIGTProjection` functions.
 
 <br>
-<span style="background-color:LemonChiffon">Note that objects of this class are generated automatically by the `estimateIGTProjection` function.</span>
+<span style="background-color:#eef5ff">Note that objects of this class are generated automatically by the `estimateIGTProjection` function.</span>
 
 # Data pre-processing 
 
@@ -170,7 +179,7 @@ class( datasetFormatted$date )
 ## Transform the ICD9-CM into PheWAS codes
 Once the CSV file has been readed and the date column transformed, the third step is to transform the ICD9-CM to PheWAS codes if needed (https://phewascatalog.org/) [@denny2013systematic]. 
 
-<span style="background-color:LemonChiffon">This step is not mandatory, is an option for those analysis in which ICD9-CM are analyzed and want to be reduced and transformed into PheWAS codes.</span>  
+<span style="background-color:#eef5ff">This step is not mandatory, is an option for those analysis in which ICD9-CM are analyzed and want to be reduced and transformed into PheWAS codes.</span>  
 
 The `EHRtemporalVariability` R package allows the user to do the mapping in an automatic way applying the `icd9toPheWAS` function.
 
@@ -302,7 +311,7 @@ names( igtProjs ) <- names( probMaps )
 # Data visualization
 `EHRtemporalVariability` offers two different options to visualize the results, heatmaps and Information Geometric Temporal (IGT) plots. An special focus is made on visualization colors. 
 
-<span style="background-color:LemonChiffon">The default "Spectral" palette shows a color temperature scheme from blue, through yellow, to red. The four remaining options are better suited for those with colorblindness, including "Viridis", "Magma", and their reversed versions "Viridis-reversed" and "Magma-reversed".</span>
+<span style="background-color:#eef5ff">The default "Spectral" palette shows a color temperature scheme from blue, through yellow, to red. The four remaining options are better suited for those with colorblindness, including "Viridis", "Magma", and their reversed versions "Viridis-reversed" and "Magma-reversed".</span>
 
 ## Plot data temporal maps
 The `plotDataTemporalMap` function returns a heatmap or time series plot.  This function has as input the following arguments:
@@ -456,7 +465,7 @@ plotly::plot_ly(x = igtProj@projection[,1], y = igtProj@projection[,2],
               plotly::config(displaylogo = FALSE)
 ```
 
-<span style="background-color:LemonChiffon">Note that the sensitivity of the cluster validation can be refined by using IGT projections at 3 or more dimensions, modifying the DBSCAN parameters, or using other clustering algorithms.</span>
+<span style="background-color:#eef5ff">Note that the sensitivity of the cluster validation can be refined by using IGT projections at 3 or more dimensions, modifying the DBSCAN parameters, or using other clustering algorithms.</span>
 
 # Summary of `EHRtemporalVariability` available functions
 

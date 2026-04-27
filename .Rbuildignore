@@ -5,6 +5,7 @@
 ^vignettes\biomed-central.csl$
 ^vignettes\createAutomaticPDFfunctions.R$
 ^vignettes\EHRtemporalVariability.html$
+^vignettes\dth_igtplot.png$
 ^vignettes\EHRtemporalVariabilityHelp.pdf$
 ^cran-comments\.md$
 ^CRAN-RELEASE$

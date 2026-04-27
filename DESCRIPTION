@@ -34,7 +34,7 @@ Imports:
     scales,
     methods,
     MASS
-Suggests: knitr, rmarkdown, devtools, BiocStyle, dbscan, webshot, httr
+Suggests: knitr, rmarkdown, devtools, dbscan, webshot, httr
 VignetteBuilder: knitr
 NeedsCompilation: no
 Authors@R: c(

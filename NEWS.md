@@ -1,6 +1,7 @@
 # EHRtemporalVariability 1.2.2
 
-* Reduced installed package size to comply with CRAN policies by (i) removing prebuilt vignette artifacts from the source package, (ii) replacing large inst/extdata files with compressed xz data.
+* Reduced installed package size by (i) removing prebuilt vignette artifacts from the source package, (ii) replacing large inst/extdata files with compressed xz data.
+* Improved vignette compliance with CRAN policies by removing the `BiocStyle` dependency.
 
 # EHRtemporalVariability 1.2.1
 
