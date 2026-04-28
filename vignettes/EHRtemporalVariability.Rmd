@@ -444,17 +444,17 @@ install.packages("dbscan")
 library(dbscan)
 ```
 
-```{r dbscantrue, echo=FALSE, message=FALSE, eval=TRUE, warning=FALSE}
+```{r dbscantrue, echo=FALSE, message=FALSE, eval=requireNamespace("dbscan", quietly=TRUE), warning=FALSE}
 library(dbscan)
 ```
 
-```{r temporalSubgroupsClustering, eval=TRUE, warning=FALSE}
+```{r temporalSubgroupsClustering, eval=requireNamespace("dbscan", quietly=TRUE), warning=FALSE}
 # We set the minimum number of batches in a subgroup as 2 
 # We set eps based on the knee of the following KNNdistplot, at around 0.023
 # kNNdistplot(igtProj@projection, k = 2, all = FALSE)
 igtProj = igtProjs[["diagcode1-phewascode"]]
 # We select the 2 first dimensions for consistency with the IGT plot examples above
-dbscanResults <- dbscan(igtProj@projection[,c(1,2)], eps = 0.023, minPts = 2)
+dbscanResults <- dbscan::dbscan(igtProj@projection[,c(1,2)], eps = 0.023, minPts = 2)
 clusterNames  <- vector(mode = "character", length = 10)
 clusterNames[dbscanResults$cluster == 0] <- "Outlier batches"
 clusterNames[! dbscanResults$cluster == 0] <- paste("Temporal subgroup",dbscanResults$cluster[! dbscanResults$cluster == 0])

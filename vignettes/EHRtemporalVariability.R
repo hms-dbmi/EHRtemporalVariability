@@ -1,20 +1,25 @@
 ## ----setup, include=FALSE-----------------------------------------------------
-knitr::opts_chunk$set(echo = TRUE, warning=FALSE)
+knitr::opts_chunk$set(
+    echo = TRUE,
+    warning=FALSE,
+    fig.width = 7,
+    fig.height = 4,
+    out.width = "100%")
 
 ## ----cran, message=FALSE, eval=FALSE, warning=FALSE---------------------------
-#  install.packages("EHRtemporalVariability")
-#  library(EHRtemporalVariability)
+# install.packages("EHRtemporalVariability")
+# library(EHRtemporalVariability)
 
 ## ----crantrue, echo=FALSE, message=FALSE, eval=TRUE, warning=FALSE------------
 library(EHRtemporalVariability)
 
 ## ----devtls, message=FALSE, eval=FALSE, warning=FALSE-------------------------
-#  install.packages("devtools")
-#  library(devtools)
+# install.packages("devtools")
+# library(devtools)
 
 ## ----bioC, message=FALSE, eval=FALSE, warning=FALSE---------------------------
-#  install_github("hms-dbmi/EHRtemporalVariability")
-#  library( EHRtemporalVariability )
+# install_github("hms-dbmi/EHRtemporalVariability")
+# library( EHRtemporalVariability )
 
 ## ----EHRtemporalVariabilityObj1, echo = FALSE, eval = TRUE, warning=FALSE-----
 githubURL <- "https://github.com/hms-dbmi/EHRtemporalVariability-DataExamples/raw/master/variabilityDemoNHDS.RData"
@@ -61,23 +66,23 @@ datasetPheWAS <- icd9toPheWAS(data           = datasetFormatted,
 head( datasetPheWAS[, c( "diagcode1", "diagcode1-phewascode")] )
 
 ## ----estimateDataTemporalMap, eval=FALSE, warning=FALSE-----------------------
-#  probMaps <- estimateDataTemporalMap(data           = datasetPheWAS,
-#                                      dateColumnName = "date",
-#                                      period         = "month")
+# probMaps <- estimateDataTemporalMap(data           = datasetPheWAS,
+#                                     dateColumnName = "date",
+#                                     period         = "month")
 
 ## ----estimateDataTemporalMapOutput, eval=TRUE, warning=FALSE------------------
 class( probMaps )
 class( probMaps[[ 1 ]] )
 
 ## ----estimateDataTemporalMapSupport, eval=FALSE, warning=FALSE----------------
-#  supports <- vector("list",2)
-#  names(supports) <- c("age","diagcode1")
-#  supports[[1]] <- 1:18
-#  supports[[2]] <- c("V3000","042--","07999","1550-","2252-")
-#  probMapsWithSupports <- estimateDataTemporalMap(data           = datasetPheWAS,
-#                                      dateColumnName = "date",
-#                                      period         = "month",
-#                                      supports       = supports)
+# supports <- vector("list",2)
+# names(supports) <- c("age","diagcode1")
+# supports[[1]] <- 1:18
+# supports[[2]] <- c("V3000","042--","07999","1550-","2252-")
+# probMapsWithSupports <- estimateDataTemporalMap(data           = datasetPheWAS,
+#                                     dateColumnName = "date",
+#                                     period         = "month",
+#                                     supports       = supports)
 
 ## ----trimDataTemporalMap, eval=TRUE, warning=FALSE----------------------------
 class( probMaps[[1]] )
@@ -98,8 +103,8 @@ igtProj <- estimateIGTProjection( dataTemporalMap = probMaps[[1]],
 class( igtProj )
 
 ## ----sapplyestimateIGTProjection, eval=FALSE, warning=FALSE-------------------
-#  igtProjs <- sapply ( probMaps, estimateIGTProjection )
-#  names( igtProjs ) <- names( probMaps )
+# igtProjs <- sapply ( probMaps, estimateIGTProjection )
+# names( igtProjs ) <- names( probMaps )
 
 ## ----loadExampleFile, eval=TRUE, warning=FALSE--------------------------------
 githubURL <- "https://github.com/hms-dbmi/EHRtemporalVariability-DataExamples/raw/master/variabilityDemoNHDS.RData"
@@ -133,24 +138,24 @@ plotIGTProjection(
     trajectory      = TRUE)
 
 ## ----saveRData, eval=FALSE, warning=FALSE-------------------------------------
-#  names( probMaps )
-#  names( igtProjs )
-#  save(probMaps, igtProjs, file = "myExport.RData")
+# names( probMaps )
+# names( igtProjs )
+# save(probMaps, igtProjs, file = "myExport.RData")
 
 ## ----dbscan, message=FALSE, eval=FALSE, warning=FALSE-------------------------
-#  install.packages("dbscan")
-#  library(dbscan)
+# install.packages("dbscan")
+# library(dbscan)
 
-## ----dbscantrue, echo=FALSE, message=FALSE, eval=TRUE, warning=FALSE----------
+## ----dbscantrue, echo=FALSE, message=FALSE, eval=requireNamespace("dbscan", quietly=TRUE), warning=FALSE----
 library(dbscan)
 
-## ----temporalSubgroupsClustering, eval=TRUE, warning=FALSE--------------------
+## ----temporalSubgroupsClustering, eval=requireNamespace("dbscan", quietly=TRUE), warning=FALSE----
 # We set the minimum number of batches in a subgroup as 2 
 # We set eps based on the knee of the following KNNdistplot, at around 0.023
 # kNNdistplot(igtProj@projection, k = 2, all = FALSE)
 igtProj = igtProjs[["diagcode1-phewascode"]]
 # We select the 2 first dimensions for consistency with the IGT plot examples above
-dbscanResults <- dbscan(igtProj@projection[,c(1,2)], eps = 0.023, minPts = 2)
+dbscanResults <- dbscan::dbscan(igtProj@projection[,c(1,2)], eps = 0.023, minPts = 2)
 clusterNames  <- vector(mode = "character", length = 10)
 clusterNames[dbscanResults$cluster == 0] <- "Outlier batches"
 clusterNames[! dbscanResults$cluster == 0] <- paste("Temporal subgroup",dbscanResults$cluster[! dbscanResults$cluster == 0])
